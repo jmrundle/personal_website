@@ -1,4 +1,4 @@
-html, body, #navigation {
+html, body {
     height: 100%;
 }
 body {
@@ -8,13 +8,16 @@ body {
 
 #navigation {
     position: fixed;
+    top: 0;
+    bottom: 0;
     overflow-y: scroll;
     text-align: center;
     width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 35px 0;
     border-right: solid;
-}
-#navigation > header {
-    padding: 30px;
 }
 #navigation > header > img {
     border-radius: 50%;
@@ -22,9 +25,6 @@ body {
 }
 #nav-toggler {
     display: none;
-}
-nav {
-    padding: 30px 0;
 }
 nav ul {
     list-style-type: none;
@@ -34,16 +34,19 @@ nav a {
     text-decoration: none;
     color: var(--link-color);
     display: block;
-    padding: 10px 0;
+    padding: .9em 0;
 }
-nav i {
-    font-size: 2.3em !important;
-    padding: 15px;
-}
-
-li.active > a {
+nav .active > a {
     background-color: var(--primary-font-color);
     color: var(--main-bg-color);
+}
+
+nav a:hover {
+    background-color: var(--secondary-font-color);
+}
+#nav-toggler > i {
+    font-size: 2.3em !important;
+    padding: 15px;
 }
 
 footer ul {
@@ -53,15 +56,18 @@ footer ul {
 }
 footer li {
     display: inline-block;
+}
+footer a {
     padding: 10px;
     font-size: 1.3em;
 }
-footer li i:hover {
-    color: var(--link-hover);
+footer i:hover {
+    color: var(--secondary-font-color);
 }
 
 #content {
     margin-left: 300px;
+    width: 100%;
 }
 
 @media (max-width: 600px) {
@@ -74,6 +80,7 @@ footer li i:hover {
         height: auto;
         overflow: hidden;
         border-bottom: solid;
+        padding: 0;
     }
     #navigation > header {
         display: none;
@@ -84,9 +91,6 @@ footer li i:hover {
     }
     #nav-toggler:hover {
         cursor: pointer;
-    }
-    nav {
-        padding: 0;
     }
     #head {
         display: table-cell;
@@ -111,7 +115,7 @@ footer li i:hover {
     }
     #links.open {
         display: block;
-        max-height: 200px; /*      FIX ???      */
+        max-height: 300px; /*      FIX ???      */
         transition: max-height 400ms ease-out;
         padding-bottom: 10px;
     }

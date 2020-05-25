@@ -8,7 +8,7 @@ import spotipy
 class ApiServices:
     def __init__(self, app):
         self.github  = Github(
-            username=app.config["GITHUB_USERNAME"],
+            username=app.config["INSTANCE_INFO"]["social_objects"]["github"].username,
             access_token=app.config["GITHUB_ACCESS_TOKEN"]
         )
         self.spotify = Spotify(

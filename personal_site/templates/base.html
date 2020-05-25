@@ -2,7 +2,8 @@
     ('/', 'home', 'Home'),
     ('/more', 'more', 'More'),
     ('/resources/resume.pdf', 'resume', 'Resume'),
-    ('/projects', 'projects', 'Projects')
+    ('/projects', 'projects', 'Projects'),
+    ('/test', 'test', 'Test')
 ] %}
 
 {% set active_page = active_page | default('Index') %}
@@ -52,12 +53,13 @@
 
             <footer>
                 <ul>
-                    <li><a href="{{ g_socials.github.url }}"><i class="fa {{ g_socials.github.fa_icon }}"></i></a></li>
                     <li><a href="{{ g_socials.linkedin.url }}"><i class="fa {{ g_socials.linkedin.fa_icon }}"></i></a></li>
+                    <li><a href="{{ g_socials.github.url }}"><i class="fa {{ g_socials.github.fa_icon }}"></i></a></li>
                     <li><a href="{{ g_socials.email.url }}"><i class="fa {{ g_socials.email.fa_icon }}"></i></a></li>
                 </ul>
             </footer>
         </section>
+
 
         <section id="content">
             {% block content %}{% endblock %}

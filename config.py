@@ -17,6 +17,7 @@ def load_instance_info(info_path):
         config["username"] = info["social_usernames"][platform]
         social_objects[platform] = models.Social(**config)
     info["social_objects"] = social_objects
+
     return info
 
 
@@ -43,13 +44,10 @@ class Config(object):
     SPOTIFY_REDIRECT_URI  = os.environ['SPOTIFY_REDIRECT_URI']
     SPOTIFY_CACHE_PATH    = os.path.join(INSTANCE_PATH, ".spotify-cache")
 
-    # DATABASE_URI = 'sqlite:///:memory:'
-    # load info.yml here?
     INSTANCE_INFO = load_instance_info(DATA_FILE)
 
 
 class ProductionConfig(Config):
-    # DATABASE_URI = 'mysql://user@localhost/foo'
     pass
 
 

@@ -30,6 +30,14 @@ def register_routes(app):
         apis.refresh()
         return render_template("more.html", apis=apis)
 
+    @app.route("/projects", methods=["GET"])
+    def projects():
+        return render_template("base.html")
+
+    @app.route("/test", methods=["GET"])
+    def test():
+        return render_template("base.html")
+
     @app.route('/resources/<path:filename>', methods=["GET"])
     def serve(filename):
         return send_from_directory(app.config["MEDIA_PATH"], filename)

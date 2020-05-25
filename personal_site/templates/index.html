@@ -3,14 +3,24 @@
 {% set title = "Home" %}
 
 {% block content %}
-    <div class="social-links">
-        {% for social in g_socials.values() %}
-            <div class="social-link">
-                <a href="{{ social.url }}" title="{{ social.name }}">
-                    <i class="fa {{ social.fa_icon }}"></i>
-                    <span>{{ social.name }}</span>
-                </a>
-            </div>
-        {% endfor %}
-    </div>
+    <header id="intro" style="padding: 10px; text-align: center; width: 100%">
+        <h1>{{ g_name }}</h1>
+        <p style="max-width: 80%; display: inline-block">
+            I am a junior Computer Science major at the University of Notre Dame, and
+            I come from Jefferson City, Missouri.<br>
+            In my free time, I enjoy playing golf, messing around with technology,
+            watching sports, and listening to music.
+        </p>
+    </header>
+    <footer id="colorful-socials">
+        <ul>
+            {% for social in g_socials.values() %}
+                <li>
+                    <a href="{{ social.url }}" title="{{ social.name }}">
+                        <i class="fa {{ social.fa_icon }}" style="background-color: {{ social.bg_col }}"></i>
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    </footer>
 {% endblock %}

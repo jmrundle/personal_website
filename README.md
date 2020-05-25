@@ -23,12 +23,12 @@ pip install -r requirements.txt
         1. [config.py](config.py): public configuration (debug mode, api refresh rate, ... , anything that is fine to stay in git repo)
         2. [social_config.yml](social_config.yml): configures how we handle a given social media platform (shouldn't need to touch, unless you wan't to add support for another platform)
     - Private
-        3. [instance/.env](instance/.env):  optional file to declare environmental variables.  Use this for API keys, access tokens, etc.
+        1. [instance/.env](instance/.env):  optional file to declare environmental variables.  Use this for API keys, access tokens, etc.
             - NOTE: this is simply an alternative to setting each env variable explicitly in the shell with: 
               ```bash
               export CONFIG_VARIABLE=value
               ```
-        4. [instance/info.yml](instance/info.yml): personalized information for site
+        2. [instance/info.yml](instance/info.yml): personalized information for site
            - Stores social media usernames, resume info, etc. to personalize site
 - Put all instance files (images, favicon, resume, etc) in the [instance directory](instance)
     - files in this directory won't be tracked by git, thus, it's a good place to keep personal information, images, etc.
@@ -55,7 +55,7 @@ pip install -r requirements.txt
         SPOTIFY_CLIENT_SECRET=your_spotify_client_secret
         SPOTIFY_REDIRECT_URI=your_spotify_redirect_uri 
         ```
-   - in order to access your personal spotify data, you will have to impersonate the client Spotify's OAuth authentication protocol
+   - in order to access your personal spotify data, you will have to impersonate the client in Spotify's OAuth authentication protocol
    - run setup_spotify.py to generate an access token
         ```python3
         python3 setup_spotify.py
