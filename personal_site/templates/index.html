@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% set active_page = "home" %}
+{% set title = "Home" %}
+
+{% block content %}
+    <div class="social-links">
+        {% for social in g_socials.values() %}
+            <div class="social-link">
+                <a href="{{ social.url }}" title="{{ social.name }}">
+                    <i class="fa {{ social.fa_icon }}"></i>
+                    <span>{{ social.name }}</span>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

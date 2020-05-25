@@ -1,0 +1,11 @@
+name: John Smith
+description: This is a description
+avatar: /path/to/avatar.jpg
+
+social_usernames:
+  email:  test@gmail.com
+  github: test
+  linkedin: first-last-abcd1234
+  resume: /path/to/resume.pdf
+  twitter: test
+  spotify: test

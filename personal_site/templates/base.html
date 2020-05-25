@@ -1,0 +1,70 @@
+{% set navigation_bar = [
+    ('/', 'home', 'Home'),
+    ('/more', 'more', 'More'),
+    ('/resources/resume.pdf', 'resume', 'Resume'),
+    ('/projects', 'projects', 'Projects')
+] %}
+
+{% set active_page = active_page | default('Index') %}
+{% set title = title | default("Home") %}
+
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/navbar.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+        <title>{{ g_name }} - {{ title }}</title>
+    </head>
+
+    <body>
+        <section id="navigation">
+            <header>
+                <img src="{{ g_avatar }}" alt="placeholder">
+                <h1>{{ g_name }}</h1>
+                <p>{{ g_description }}</p>
+            </header>
+
+            <nav>
+                <div id="nav-toggler" data-target="links">
+                    <div id="head"><h2>{{ g_name }}</h2></div>
+                    <i class="fa fa-bars"></i>
+                </div>
+                <ul id="links">
+                <!--
+                    {% for nav_item in g_navigation %}
+                        <li class="{% if nav_item.name == active_page %}active{% endif %}">
+                            <a href="{{ nav_item.endpoint }}">{{ nav_item.name }}</a>
+                        </li>
+                    {% endfor %}
+                -->
+                    {% for href, id, caption in navigation_bar %}
+                        <li class="{% if id == active_page %}active{% endif %}">
+                            <a href="{{ href }}">{{ caption }}</a>
+                        </li>
+                    {% endfor %}
+
+                </ul>
+            </nav>
+
+            <footer>
+                <ul>
+                    <li><a href="{{ g_socials.github.url }}"><i class="fa {{ g_socials.github.fa_icon }}"></i></a></li>
+                    <li><a href="{{ g_socials.linkedin.url }}"><i class="fa {{ g_socials.linkedin.fa_icon }}"></i></a></li>
+                    <li><a href="{{ g_socials.email.url }}"><i class="fa {{ g_socials.email.fa_icon }}"></i></a></li>
+                </ul>
+            </footer>
+        </section>
+
+        <section id="content">
+            {% block content %}{% endblock %}
+        </section>
+    </body>
+    <footer>
+        <script src="{{ url_for("static", filename="js/navbar.js") }}"></script>
+        {% block scripts %}{% endblock %}
+    </footer>
+</html>

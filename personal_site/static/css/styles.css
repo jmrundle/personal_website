@@ -1,0 +1,307 @@
+/* color scheme */
+:root {
+    --main-bg-color: #2a2738;
+    --primary-font-color: #dddfe0;
+    --secondary-font-color: #35ca4f;
+    --link-color: #ffffff;
+    --link-hover: #7dff09;
+    --link-underline: #586557;
+}
+
+body {
+    background-color: var(--main-bg-color);
+    color: var(--primary-font-color);
+    -webkit-font-smoothing: antialiased;
+    font-family: Verdana, Geneva, sans-serif;
+}
+
+h1, h2, h3, h4, h5 {
+    font-weight: 500;
+    margin: 0.3em 0;
+}
+
+h2 {
+    color: var(--secondary-font-color);
+}
+
+.api-container {
+    padding: 0 20px;
+    margin-top: 30px;
+}
+
+.api-header > h3 {
+    margin-top: 30px
+}
+
+.api-header > span {
+    margin-bottom: 20px;
+}
+
+.api-header i {
+    padding-left: 10px;
+    font-size: 1.7rem;
+}
+
+.api-content {
+    border-bottom: solid;
+    padding: 20px 0;
+}
+
+.spotify-content {
+    border-bottom: solid;
+    border-width: thin;
+    padding: 20px 0;
+}
+
+.spotify-content:first-child {
+    padding-top: 0;
+}
+.spotify-content:last-child {
+    border: none;
+}
+
+@media (min-width: 840px) {
+    .spotify-content {
+        display: flex;
+    }
+    .col-left {
+        padding: 0 20px;
+    }
+    .col-left > .sub-heading {
+        position: relative;
+        top: 30%;
+    }
+}
+
+
+
+.col-right {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.col-right > .spotify-item {
+    flex-direction: row;
+    flex-wrap: wrap;
+    overflow: hidden;
+    text-align: center;
+    display: block;
+    padding: 10px;
+    margin: 10px;
+}
+
+.spotify-image {
+    width: 100%;
+    height: auto;
+}
+
+.spotify-title {
+    font-family: 'Lucida Grande', 'Lucida Sans Unicode', 'Geneva', 'Verdana', sans-serif;
+    font-size: 17px;
+    font-weight: 300;
+    max-width: 120px;
+    display: block;
+    white-space: nowrap;
+}
+
+
+.square {
+    position: relative;
+    display: inline-block;
+    /*width: 15vw;
+    height: 15vw;
+    min-width: 100px;
+    min-height: 100px;*/
+    width: 160px;
+    height: 160px;
+    overflow: hidden;
+}
+
+.square img {
+    position: absolute;
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+    top: 50%;
+    left: 50%;
+    transform: translate( -50%, -50%);
+}
+
+.square img.landscape {
+    height: 100%;
+    width: auto;
+}
+
+.spotify-preview-container {
+  display: inline-block;
+  max-width: 400px;
+}
+
+i.spotify-preview:before {
+    content: "\f144";
+}
+i.spotify-preview.active:before {
+    content: "\f28b";
+}
+i.spotify-preview.loading:before {
+    content: "\f110";
+}
+
+.github-content {
+    display: flex;
+}
+.github-content > div {
+    padding: 0 20px;
+}
+
+@media (max-width: 840px) {
+    .github-content {
+        display: block;
+    }
+    .github-activity {
+        margin-top: 20px;
+    }
+}
+
+.github-link {
+    color: #bf6ed0;
+    transition: color 0.2s;
+    border-bottom: solid 1px #5f4365;
+}
+
+.github-link:hover {
+    color: #ff01ea;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+.github-profile img {
+    padding: 10px;
+}
+
+.g-card {
+    display: block;
+    line-height: 1.3rem;
+    padding-top: 0.1rem;
+    padding-bottom: 0.1rem;
+    color: var(--primary-font-color);
+    font-family: Helvetica, serif
+}
+
+.fullname {
+    font-size: 20px;
+    padding-top: 12px;
+    font-weight: 600;
+}
+
+.nickname {
+    font-size: 15px;
+    padding-top: 5px;
+    line-height: 20px;
+    font-weight: 300;
+}
+
+.bio {
+    font-size: 12px;
+    padding-top: 5px;
+    font-weight: 100;
+}
+
+
+
+.navbar {
+    padding: 1.5em 1em;
+}
+
+.profile {
+    text-align: center;
+}
+
+.profile > img {
+    margin: 20px;
+}
+
+.profile > h2 {
+    padding: 20px 0;
+}
+
+.social-links {
+    position: relative;
+    left: 10%;
+}
+
+.social-link {
+    padding: 15px 0;
+}
+
+.social-link a {
+    font-size: 1.6em;
+    text-decoration: none;
+    color: var(--link-color);
+}
+
+.social-link i {
+    color: inherit;
+    font-size: inherit;
+}
+
+.social-link a:hover {
+    text-decoration: none;
+    color: #d4be1b;
+    font-size: 1.75em;
+    transition: all 400ms;
+}
+
+/*
+.social-link i.fa {
+    display: inline;
+    width: 30px;
+    font-size: 30px;
+    padding: 20px;
+    text-align: center;
+    border-radius: 50%;
+}
+*/
+
+
+
+
+
+.overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    transition: opacity .4s ease;
+    background-color: grey;
+}
+
+/* When you mouse over the container, fade in the overlay icon*/
+.overlay:hover {
+    opacity: 0.6;
+    cursor: pointer;
+}
+
+hr {
+    color: var(--primary-font-color);
+}
+
+i {
+    color: var(--primary-font-color);
+}
+
+/* The icon inside the overlay is positioned in the middle vertically and horizontally */
+.icon {
+  font-size: 100px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+}
+

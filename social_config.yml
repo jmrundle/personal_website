@@ -1,0 +1,35 @@
+linkedin:
+  name: 'LinkedIn'
+  url_prefix: 'https://www.linkedin.com/in/'
+  fa_icon: 'fa-linkedin'
+  bg_col: '#017BB5'
+
+twitter:
+  name: 'Twitter'
+  url_prefix: 'https://www.twitter.com/'
+  fa_icon: 'fa-twitter'
+  bg_col: '#56ACEE'
+
+github:
+  name: 'GitHub'
+  url_prefix: 'https://github.com/'
+  fa_icon: 'fa-github'
+  bg_col: '#323131'
+
+spotify:
+  name: 'Spotify'
+  url_prefix: 'https://open.spotify.com/user/'
+  fa_icon: 'fa-spotify'
+  bg_col: '#1DB954'
+
+email:
+  name: 'Email'
+  url_prefix: 'mailto:'
+  fa_icon: 'fa-envelope'
+  bg_col: '#1A99EE'
+
+resume:
+  name: 'Resume'
+  url_prefix: ''
+  fa_icon: 'fa-file'
+  bg_col: '#a55757'

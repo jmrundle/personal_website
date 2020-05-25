@@ -1,0 +1,118 @@
+html, body, #navigation {
+    height: 100%;
+}
+body {
+    display: flex;
+    margin: 0;
+}
+
+#navigation {
+    position: fixed;
+    overflow-y: scroll;
+    text-align: center;
+    width: 300px;
+    border-right: solid;
+}
+#navigation > header {
+    padding: 30px;
+}
+#navigation > header > img {
+    border-radius: 50%;
+    width: 100px;
+}
+#nav-toggler {
+    display: none;
+}
+nav {
+    padding: 30px 0;
+}
+nav ul {
+    list-style-type: none;
+    padding: 0; margin: 0;
+}
+nav a {
+    text-decoration: none;
+    color: var(--link-color);
+    display: block;
+    padding: 10px 0;
+}
+nav i {
+    font-size: 2.3em !important;
+    padding: 15px;
+}
+
+li.active > a {
+    background-color: var(--primary-font-color);
+    color: var(--main-bg-color);
+}
+
+footer ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+footer li {
+    display: inline-block;
+    padding: 10px;
+    font-size: 1.3em;
+}
+footer li i:hover {
+    color: var(--link-hover);
+}
+
+#content {
+    margin-left: 300px;
+}
+
+@media (max-width: 600px) {
+    body {
+        display: block;
+    }
+    #navigation {
+        position: inherit;
+        width: 100%;
+        height: auto;
+        overflow: hidden;
+        border-bottom: solid;
+    }
+    #navigation > header {
+        display: none;
+    }
+    #nav-toggler {
+        width: 100%;
+        display: table;
+    }
+    #nav-toggler:hover {
+        cursor: pointer;
+    }
+    nav {
+        padding: 0;
+    }
+    #head {
+        display: table-cell;
+        vertical-align: middle;
+        padding-left: 10px;
+        width: 90%;
+        text-align: left;
+    }
+    #head > h2 {
+        color: var(--primary-font-color);
+    }
+    #navigation > footer {
+        display: none;
+    }
+    #content {
+        margin: 0;
+        border-left: none;
+    }
+    #links {
+        max-height: 0;
+        transition: max-height 400ms ease-out;
+    }
+    #links.open {
+        display: block;
+        max-height: 200px; /*      FIX ???      */
+        transition: max-height 400ms ease-out;
+        padding-bottom: 10px;
+    }
+}

@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+{% set active_page = "more" %}
+{% set title = "More" %}
+
+{% block content %}
+    <div class="api-container"> <!--container-->
+        <div class="api-header">
+            <h2>My Favorite Music Right Now</h2>
+            <span>Generated with Spotify's API<i class="fa fa-spotify"></i></span>
+        </div>
+        <div class="api-content">
+            <div class="spotify-content">
+                <div class="col-left">
+                    <div class="sub-heading">
+                       <h3>Artists</h3>
+                    </div>
+                </div>
+                <div class="col-right">
+                     {% for artist in apis.spotify.top_artists["items"] %}
+                         <div class="spotify-item">
+                             <span class="spotify-title">{{ artist.name }}</span>
+                             <div class="square">
+                                 <a href="{{ artist.external_urls.spotify }}">
+                                     <img class="spotify-image" src="{{ artist.images[0].url }}" alt="{{ artist.name }}">
+                                 </a>
+                             </div>
+                         </div>
+                     {% endfor %}
+                </div>
+            </div>
+
+            <div class="spotify-content">
+                <audio id="spotify-preview-audio" src=""></audio>
+                <div class="col-left">
+                    <div class="sub-heading">
+                        <h3>Tracks</h3><span style="color: grey">click for a preview!</span>
+                    </div>
+                </div>
+                <div class="col-right">
+                     {% for track in apis.spotify.top_tracks["items"] %}
+                         <div class="spotify-item">
+                             <span class="spotify-title">{{ track.name }}</span>
+                             <div class="spotify-preview-container square">
+                                 <img class="spotify-image" src="{{ track.album.images[0].url }}" alt="{{ track.name }}" >
+                                  <div class="overlay">
+                                      <a class="icon" title="Preview Track">
+                                          <i class="fa spotify-preview" data-preview-url="{{ track.preview_url }}"></i>
+                                      </a>
+                                  </div>
+                             </div>
+                         </div>
+                     {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="api-container">
+        <div class="api-header">
+            <h2>Public Github Activity</h2>
+            <span>Generated with Github's API<i class="fa fa-github powered-by"></i></span>
+        </div>
+        <div class="api-content">
+            <div class="github-content">
+                <div class="github-profile"> <!--col-lg-3 my-auto"-->
+                    <a href="{{ apis.github.profile.html_url }}">
+                        <img width="200" height="200" src="{{ apis.github.profile.avatar_url }}" alt="Github Profile">
+                    </a>
+                    <span class="g-card fullname">{{ apis.github.profile.name }}</span>
+                    <span class="g-card nickname">{{ apis.github.profile.login }}</span>
+                    <span class="g-card bio">{{ apis.github.profile.bio }}</span>
+                </div>
+
+                <div class="github-activity">
+                    <h3>Recent Activity</h3>
+                    <ul>
+                        {% for event in apis.github.events %}
+                            <li>
+                                {% if event.type == "PushEvent" %}
+                                    {% if (event.payload.commits | length) == 1 %}
+                                        <span>Pushed a commit to {{ event.repo.name }}:</span>
+                                        <ul>
+                                            <li><a class="github-link" href="{{ event.payload.commits[0].url | git_api_to_html }}">{{ event.payload.commits[0].message }}</a></li>
+                                        </ul>
+                                    {% else %}
+                                        <span>Pushed {{ event.payload.commits | length }} commits to {{ event.repo.name }}</span>
+                                        <ul>
+                                            {% for commit in event.payload.commits %}
+                                                <li><a class="github-link" href="{{ commit.url | git_api_to_html }}">{{ commit.message }}</a></li>
+                                            {% endfor %}
+                                        </ul>
+                                    {% endif %}
+                                {% elif event.type == "CreateEvent" %}
+                                    <span>Created {{ event.repo.name }}: {{ event.payload.description }}</span>
+                                {% elif event.type == "ForkEvent" %}
+                                    <span>Forked a repo at <a class="github-link" href="{{ event.payload.forkee.html_url }}">{{ event.repo.name }}</a></span>
+                                {% endif %}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{{ url_for("static", filename="js/spotify-preview.js") }}"></script>
+{% endblock %}
