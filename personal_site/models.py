@@ -1,14 +1,18 @@
-from dataclasses import dataclass
 from functools import wraps
 
 
-@dataclass
 class Social:
-    name: str
-    url_prefix: str
-    fa_icon: str
-    username: str
-    bg_col: str
+    def __init__(self,
+                 name,
+                 url_prefix,
+                 fa_icon,
+                 username,
+                 bg_col):
+        self.name       = name
+        self.url_prefix = url_prefix
+        self.fa_icon    = fa_icon
+        self.username   = username
+        self.bg_col     = bg_col
 
     @property
     def url(self):
