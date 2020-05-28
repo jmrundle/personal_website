@@ -1,9 +1,11 @@
 {% extends "base.html" %}
-{% set active_page = "more" %}
-{% set title = "More" %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{{ url_for("static", filename="css/more.css") }}">
+{% endblock %}
 
 {% block content %}
-    <div class="api-container"> <!--container-->
+    <div class="api-container">
         <div class="api-header">
             <h2>My Favorite Music Right Now</h2>
             <span>Generated from Spotify's API<i class="fa fa-spotify"></i></span>

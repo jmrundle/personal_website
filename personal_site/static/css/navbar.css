@@ -15,8 +15,8 @@ body {
     width: 300px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    padding: 35px 0;
+    justify-content: space-evenly;
+    /*padding: 35px 0;*/
     border-right: solid;
 }
 #navigation > header > img {
@@ -70,7 +70,7 @@ footer i:hover {
     width: 100%;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 792px) {
     body {
         display: block;
     }
@@ -79,7 +79,6 @@ footer i:hover {
         width: 100%;
         height: auto;
         overflow: hidden;
-        border-bottom: solid;
         padding: 0;
     }
     #navigation > header {
@@ -88,6 +87,7 @@ footer i:hover {
     #nav-toggler {
         width: 100%;
         display: table;
+        border-bottom: solid;
     }
     #nav-toggler:hover {
         cursor: pointer;
@@ -117,6 +117,6 @@ footer i:hover {
         display: block;
         max-height: 300px; /*      FIX ???      */
         transition: max-height 400ms ease-out;
-        padding-bottom: 10px;
+        border-bottom: solid;
     }
 }

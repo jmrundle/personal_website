@@ -1,0 +1,22 @@
+.posts {
+    list-style-type: none;
+    padding: 0;
+}
+.post-link {
+    text-decoration: none;
+    color: inherit;
+}
+.post {
+    padding: 1em;
+    border: solid;
+    border-radius: 8px;
+    display: inline-block;
+    margin: 5px;
+}
+.post:hover {
+    transform: translate(0, -3px);
+    transition: all 200ms;
+    -webkit-box-shadow: 0 10px 45px -20px #99ab987a;
+    box-shadow: 0 10px 45px -20px #99ab987a;
+}
+

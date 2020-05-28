@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{{ url_for("static", filename="css/codehilite.css") }}">
+{% endblock %}
+
+{% block content %}
+    {{ post_content | safe }}
+{% endblock %}

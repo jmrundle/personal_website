@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from flask import Flask
+from functools import wraps
 
 
 @dataclass
@@ -15,20 +15,33 @@ class Social:
         return self.url_prefix + self.username
 
 
+class NavigationLink:
+    def __init__(self, endpoint, title):
+        self.endpoint = endpoint
+        self.title    = title
+
+
 class Navigation:
     def __init__(self):
-        self.links = []
+        self.active = None
+        self._mapping  = dict()
 
-    def route(self, name, endpoint):
-        def decorator(f, *args, **kwargs):
-            def wrapper(*args, **kwargs):
-                self.links.append(
-                    {
-                        "name": name,
-                        "endpoint": endpoint
-                     }
-                )
-                f(*args, **kwargs)
-            return wrapper(args, kwargs)
+    @property
+    def links(self):
+        return self._mapping.values()
 
-        return decorator
+    def is_active(self, link: NavigationLink):
+        return link == self.active
+
+    def register(self, endpoint: str, title: str):
+        def wrapper(func):
+            self._mapping[func] = NavigationLink(endpoint, title)
+
+            @wraps(func)
+            def wrapped(*endpoint_args, **endpoint_kw):
+                self.active = self._mapping[func]
+                return func(*endpoint_args, **endpoint_kw)
+
+            return wrapped
+
+        return wrapper

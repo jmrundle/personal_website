@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{{ url_for("static", filename="css/resume.css") }}">
+{% endblock %}
+
+{% block content %}
+    {% for section in resume["sections"] %}
+        <section>
+            <h2 class="section-title">{{ section.title }}</h2>
+
+            <div class="items">
+                {% for item in section["items"] %}
+                    <div class="item">
+                        <div class="item-header">
+                            {% if item.image %}
+                                <img src="{{ item.image }}" alt="">
+                            {% endif %}
+                            <div class="left">
+                                <h3 class="title">{{ item.title }}</h3>
+                                <span class="subtitle">{{ item.subtitle }}</span>
+                            </div>
+                            <div class="right">
+                                <span class="location">{{ item.location  }}</span>
+                                <span class="date">{{ item.date }}</span>
+                            </div>
+                        </div>
+
+                        <ul>
+                            {% for sub_item in item["items"] %}
+                                <li>{{ sub_item | string }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% endfor %}
+            </div>
+
+        </section>
+
+    {% endfor %}
+
+{% endblock %}

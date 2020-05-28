@@ -1,14 +1,11 @@
 # ignore instance files, but keep folder structure and example files
 instance/*
-!instance/*.example
-!instance/static
-instance/static/*
-!instance/static/.gitkeep
+!instance/*/
+!/instance/*.example
+instance/*/*
+!instance/*/.gitkeep
 
-*.env
-
-venv
-
-__pycache__
-.idea
+venv/
+__pycache__/
+.idea/
 .DS_Store
