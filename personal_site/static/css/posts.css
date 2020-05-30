@@ -10,7 +10,7 @@
     padding: 1em;
     border: solid;
     border-radius: 8px;
-    display: inline-block;
+    display: flex;
     margin: 5px;
 }
 .post:hover {
@@ -18,5 +18,30 @@
     transition: all 200ms;
     -webkit-box-shadow: 0 10px 45px -20px #99ab987a;
     box-shadow: 0 10px 45px -20px #99ab987a;
+}
+.post-thumbnail {
+    width: 10em;
+    height: 10em;
+    background-size: cover;
+    background-position: center;
+}
+.post-tags {
+    list-style-type: none;
+}
+.post-tag:before{
+    content: "#"
+}
+.post-tag {
+    border: thin solid;
+    padding: 0.2em;
+    border-radius: 0.5em;
+}
+.post-tag:hover {
+    background-color: var(--secondary-font-color);
+    color: var(--primary-font-color)
+}
+.post-header {
+    padding-left: 1.2em;
+    flex-grow: 1;
 }
 

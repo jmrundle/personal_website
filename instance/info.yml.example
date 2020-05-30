@@ -9,3 +9,46 @@ social_usernames:
   resume: /path/to/resume.pdf
   twitter: test
   spotify: test
+
+resume:
+  sections:
+    - title: Education
+      items:
+        - title: College University
+          subtitle: Balloon Science • 2.13 GPA
+          location: Town, State
+          date: June 3000
+          image: /resources/image.png
+          items:
+            - item
+
+    - title: Experience
+      items:
+        - title: Company
+          subtitle: Position
+          location: Location, State
+          date: May 2000 - Present
+          image: /resources/image.png
+          items:
+            - Supervised Bill Gates
+
+    - title: Projects
+      items:
+        - title: Really Cool Project
+          date: Today
+          items:
+            - made a cool project
+        - title: Another cool project
+          date: Yesterday
+          items:
+            - made another cool project
+            - it was really cool I promise
+
+    - title: Technical Skills
+      items:
+        - title: Technical
+          items:
+            - every programming language
+        - title: Other
+          items:
+            - underwater basket weaving

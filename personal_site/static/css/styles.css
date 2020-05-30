@@ -21,6 +21,11 @@ h1, h2, h3, h4, h5 {
     margin: 0.3em 0;
 }
 
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
 i {
     color: var(--primary-font-color);
 }
@@ -53,8 +58,6 @@ i {
 }
 #colorful-socials a {
     padding: 15px 0;
-    text-decoration: none;
-
 }
 #colorful-socials i {
     padding: 0.45em;
@@ -67,4 +70,16 @@ i {
 footer li:hover {
     transform: scale(1.2);
     transition: all 350ms;
+}
+.content-wrapper {
+    padding: 20px;
+    height: 100%;
+}
+.center-container {
+    display: table;
+    height: 100%;
+}
+.centered-content {
+    display: table-cell;
+    vertical-align: middle;
 }

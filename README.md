@@ -1,6 +1,7 @@
 # Personal Site
- - Source files for my personal site
+ - Source files for a simple website template
  - Runs on a Flask web server
+ - Generates content from a configuration of YML files
  - (*Will be*) deployed to an AWS EC2 instance 
 
 ---
@@ -15,12 +16,12 @@ source venv/bin/activate
 ```bash
 git clone URL
 cd personal_site
-pip install -r requirements.txt
+pip3 install -r requirements.txt
 ```
 #### 3. Config
 - There are four config files
     - Public: 
-        1. [config.py](config.py): public configuration (debug mode, api refresh rate, ... , anything that is fine to stay in git repo)
+        1. [config.py](config.py): public configuration
         2. [social_config.yml](social_config.yml): configures how we handle a given social media platform (shouldn't need to touch, unless you wan't to add support for another platform)
     - Private
         1. [instance/.env](instance/.env):  optional file to declare environmental variables.  Use this for API keys, access tokens, etc.
@@ -28,15 +29,26 @@ pip install -r requirements.txt
               ```bash
               export CONFIG_VARIABLE=value
               ```
-        2. [instance/info.yml](instance/info.yml): personalized information for site
-           - Stores social media usernames, resume info, etc. to personalize site
-- Put all instance files (images, favicon, resume, etc) in the [instance directory](instance)
-    - files in this directory won't be tracked by git, thus, it's a good place to keep personal information, images, etc.
-    - The URL resource handler, [routes.py](personal_site/routes.py), checks this instance directory when loading any files not required by the application (i.e. favicon.ico, resume.pdf, etc.)
-
+        2. [instance/info.yml](instance/info.yml): information for site
+           - Stores name, social media usernames, resume info, etc. to generate site content
+- [instance directory](instance)
+     - In general, the instance directory contains all the files separate from the website template itself
+     - By default, the sub-folders (posts, resources, and tmp) each server their own purpose as well
+         - the [posts](instance/posts) directory contains all the markdown files for the blog, each of which contains a frontmatter with brief metadata about the post
+         - the [resources](instance/resources) directory is used for images, pdf files, etc. to be referenced in [info.yml](instance/info.yml) via `/resources/<filename>`
+         - the [tmp](instance/tmp) directory is used to store temporary content, such as cached API tokens
+    - These path to these sub-folders can be configured in [config.py](config.py)
+    - Nothing in this folder is tracked by git, although this behavior can be changed in the [.gitignore](.gitignore) by removing the following lines:
+        ```gitignore
+        instance/*
+        !instance/*/
+        !/instance/*.example
+        instance/*/*
+        !instance/*/.gitkeep
+        ```
 ---
 
-#### Integrating API Services
+### Integrating API Services
 1. Github
     - Export github username to config
         ```bash
@@ -61,3 +73,20 @@ pip install -r requirements.txt
         python3 setup_spotify.py
         ```
    - this will open a browser, and prompt you for permission for the application to access the required scopes
+
+---
+### Adding Blog Posts
+1. Write blog post content to Markdown files in the [posts](instance/posts) directory
+2. Include metadata about each post in the file's frontmatter, which looks like the following:
+    ```markdown
+    ---
+    title: Blog Post
+    description: An amazing story
+    image: /resources/image.png
+    tags:
+      - huge
+      - important
+    ---
+   
+    ## Post Content
+    ```

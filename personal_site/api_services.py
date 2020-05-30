@@ -6,19 +6,19 @@ import spotipy
 
 
 class ApiServices:
-    def __init__(self, app):
+    def __init__(self, config):
         self.github  = Github(
-            username=app.config["INSTANCE_INFO"]["social_objects"]["github"].username,
-            access_token=app.config["GITHUB_ACCESS_TOKEN"]
+            username=config["INSTANCE_INFO"]["social_usernames"]["github"],
+            access_token=config["GITHUB_ACCESS_TOKEN"]
         )
         self.spotify = Spotify(
-            client_id=app.config["SPOTIFY_CLIENT_ID"],
-            client_secret=app.config["SPOTIFY_CLIENT_SECRET"],
-            redirect_uri=app.config["SPOTIFY_REDIRECT_URI"],
-            cache_path=app.config["SPOTIFY_CACHE_PATH"]
+            client_id=config["SPOTIFY_CLIENT_ID"],
+            client_secret=config["SPOTIFY_CLIENT_SECRET"],
+            redirect_uri=config["SPOTIFY_REDIRECT_URI"],
+            cache_path=config["SPOTIFY_CACHE_PATH"]
         )
 
-        self.refresh_period = int(app.config["API_REFRESH_PERIOD"])
+        self.refresh_period = int(config["API_REFRESH_PERIOD"])
         self.last_refresh   = 0
         self.refresh()
 

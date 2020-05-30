@@ -1,14 +1,16 @@
-import os
 from flask import render_template, send_from_directory, abort
+import markdown
 from .api_services import ApiServices
 from .models import Navigation
-import markdown
+from .posts import load_posts
 
 
 def register_routes(app):
     # load these once
-    apis = ApiServices(app)
-    nav = Navigation()
+    apis   = ApiServices(app.config)
+    nav    = Navigation()
+    posts  = load_posts(app.config["POSTS_PATH"])
+    resume = app.config["INSTANCE_INFO"]["resume"]
 
     # inject these global variables into each template
     #   - as convention, use the 'g_' prefix for each
@@ -38,25 +40,20 @@ def register_routes(app):
     @app.route("/resume", methods=["GET"])
     @nav.register("/resume", "Resume")
     def projects():
-        return render_template("resume.html", resume=app.config["INSTANCE_INFO"]["resume"])
+        return render_template("resume.html", resume=resume)
 
     @app.route("/posts", methods=["GET"])
     @nav.register("/posts", "Posts")
     def test():
-        return render_template("post_listing.html", posts=app.config["INSTANCE_INFO"]["posts"])
+        return render_template("post_listing.html", posts=posts)
 
     @app.route("/posts/<name>", methods=["GET"])
     def get_post(name):
-        post_path = os.path.join(app.config["POSTS_PATH"], name + ".md")
-
-        if not os.path.exists(post_path):
+        text = posts.get(name, None)
+        if text is None:
             return abort(404)
 
-        with open(post_path, 'r') as in_file:
-            text = in_file.read()
-
-        html = markdown.markdown(text, extensions=["codehilite"])
-
+        html = markdown.markdown(text.content, extensions=["codehilite"])
         return render_template("post.html", post_content=html)
 
     @app.route('/resources/<path:filename>', methods=["GET"])

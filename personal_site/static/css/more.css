@@ -68,6 +68,7 @@ h2 {
     display: block;
     padding: 10px;
     margin: 10px;
+    max-width: 8em;
 }
 
 .spotify-image {
@@ -79,7 +80,6 @@ h2 {
     font-family: 'Lucida Grande', 'Lucida Sans Unicode', 'Geneva', 'Verdana', sans-serif;
     font-size: 17px;
     font-weight: 300;
-    max-width: 9em;
     display: block;
     white-space: nowrap;
 }
