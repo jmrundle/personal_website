@@ -28,4 +28,4 @@ oauth_manager = spotipy.SpotifyOAuth(
     scope="user-top-read"
 )
 code = oauth_manager.get_auth_response()
-oauth_manager.get_access_token(code, as_dict=False)
+oauth_manager.get_access_token(code, as_dict=False, check_cache=False)

@@ -1,4 +1,5 @@
 Flask==1.1.1
+gunicorn==20.0.4
 requests==2.22.0
 spotipy==2.12.0
 python-dotenv==0.13.0

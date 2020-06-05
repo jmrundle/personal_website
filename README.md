@@ -73,7 +73,9 @@ pip3 install -r requirements.txt
         python3 setup_spotify.py
         ```
    - this will open a browser, and prompt you for permission for the application to access the required scopes
-
+   - after you have granted permission, a token is generated and is saved to `instance/tmp/.spotify-cache`, which is not tracked by git
+   - TODO: implement system to keep this hidden from GitHub/GitLab, but include in Heroku deployment
+       - database of API_Service_Name -> token -> refresh_token ?
 ---
 ### Adding Blog Posts
 1. Write blog post content to Markdown files in the [posts](instance/posts) directory

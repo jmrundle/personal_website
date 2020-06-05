@@ -18,6 +18,7 @@ class ApiServices:
             cache_path=config["SPOTIFY_CACHE_PATH"]
         )
 
+        self.services       = [self.spotify, self.github]
         self.refresh_period = int(config["API_REFRESH_PERIOD"])
         self.last_refresh   = 0
         self.refresh()
@@ -28,15 +29,20 @@ class ApiServices:
         if (now - self.last_refresh) > self.refresh_period:
             print("Making requests!")
             try:
-                self.github.refresh()
-                self.spotify.refresh()
+                for service in self.services:
+                    service.refresh()
             except requests.exceptions.ConnectionError:
                 pass
 
             self.last_refresh = now
 
 
-class Github:
+class ApiObject:
+    def refresh(self):
+        raise NotImplementedError
+
+
+class Github(ApiObject):
     API_PREFIX = "https://api.github.com"
 
     def __init__(self, username, access_token):
@@ -68,7 +74,7 @@ class Github:
         return self._request(url)[:10]
 
 
-class Spotify:
+class Spotify(ApiObject):
     def __init__(self, client_id, client_secret, redirect_uri, cache_path):
         oauth_manager = spotipy.SpotifyOAuth(
             client_id=client_id,

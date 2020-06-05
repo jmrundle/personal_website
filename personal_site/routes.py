@@ -44,11 +44,11 @@ def register_routes(app):
 
     @app.route("/posts", methods=["GET"])
     @nav.register("/posts", "Posts")
-    def test():
+    def post_listing():
         return render_template("post_listing.html", posts=posts)
 
     @app.route("/posts/<name>", methods=["GET"])
-    def get_post(name):
+    def post(name):
         text = posts.get(name, None)
         if text is None:
             return abort(404)

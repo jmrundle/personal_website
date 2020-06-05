@@ -33,6 +33,7 @@ class Config(object):
     INSTANCE_PATH = os.path.join(os.path.dirname(__file__), "instance")
     POSTS_PATH    = os.path.join(INSTANCE_PATH, "posts")
     RESOURCE_PATH = os.path.join(INSTANCE_PATH, "resources")
+    TMP_PATH      = os.path.join(INSTANCE_PATH, "tmp")
     CONFIG_FILE   = os.path.join(INSTANCE_PATH, ".env")
     DATA_FILE     = os.path.join(INSTANCE_PATH, "info.yml")
 
@@ -47,7 +48,7 @@ class Config(object):
     SPOTIFY_CLIENT_ID     = os.environ['SPOTIFY_CLIENT_ID']
     SPOTIFY_CLIENT_SECRET = os.environ['SPOTIFY_CLIENT_SECRET']
     SPOTIFY_REDIRECT_URI  = os.environ['SPOTIFY_REDIRECT_URI']
-    SPOTIFY_CACHE_PATH    = os.path.join(INSTANCE_PATH, "tmp", ".spotify-cache")
+    SPOTIFY_CACHE_PATH    = os.path.join(TMP_PATH, ".spotify-cache")
 
     # information from info.yml
     INSTANCE_INFO  = load_instance_info(DATA_FILE)

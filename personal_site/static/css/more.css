@@ -45,7 +45,11 @@ h2 {
         display: flex;
     }
     .col-left {
+        width: 15%;
         padding: 0 20px;
+    }
+    .col-right {
+        width: 85%;
     }
     .col-left > .sub-heading {
         position: relative;
