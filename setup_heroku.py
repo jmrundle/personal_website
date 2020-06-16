@@ -27,7 +27,7 @@ def spotipy_cache_var():
         sys.exit(2)
 
     with open(cache_file, 'r') as cache:
-        token_info = cache.read()
+        token_info = cache.read().rstrip()
         declaration = f"SPOTIPY_CACHE='{token_info}'"
 
     return declaration
@@ -42,3 +42,7 @@ def main():
     declarations += env_vars()
     declarations += spotipy_cache_var()
     set_heroku_config(declarations)
+
+
+if __name__ == "__main__":
+    main()

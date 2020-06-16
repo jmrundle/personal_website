@@ -26,7 +26,7 @@ pip3 install -r requirements.txt
     - Private
         1. [instance/info.yml](instance/info.yml): information for site
            - Stores name, social media usernames, resume info, etc. to generate site content
-        2. [instance/.env](instance/.env):  completely optional file to declare environmental variables.  Use this for API keys, access tokens, etc.
+        2. [.env](.env):  completely optional file to declare environmental variables.  Use this for API keys, access tokens, etc.
             - NOTE: this is simply an alternative to setting each env variable explicitly in the shell with: 
               ```bash
               export CONFIG_VARIABLE=value

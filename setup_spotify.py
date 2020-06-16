@@ -34,3 +34,7 @@ def main():
 
     code = oauth_manager.get_auth_response()
     oauth_manager.get_access_token(code, as_dict=False, check_cache=False)
+
+
+if __name__ == "__main__":
+    main()

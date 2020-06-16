@@ -45,11 +45,11 @@ class Config(object):
     #   |___ tmp/
     #   |___ .env
     #   |___ info.yml
+    ENV_FILE      = ".env"
     INSTANCE_PATH = os.path.join(os.path.dirname(__file__), "instance")
     POSTS_PATH    = os.path.join(INSTANCE_PATH, "posts")
     RESOURCE_PATH = os.path.join(INSTANCE_PATH, "resources")
     TMP_PATH      = os.path.join(INSTANCE_PATH, "tmp")
-    ENV_FILE   = os.path.join(INSTANCE_PATH, ".env")
     DATA_FILE     = os.path.join(INSTANCE_PATH, "info.yml")
 
     # load env variables from optional .env file

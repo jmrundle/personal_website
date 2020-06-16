@@ -5,7 +5,7 @@
 #instance/*/*
 #!instance/*/.gitkeep
 
-**/.env
+.env
 **/.spotify-cache
 
 
