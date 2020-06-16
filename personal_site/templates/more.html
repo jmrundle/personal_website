@@ -81,7 +81,7 @@
                                     <li>
                                         <span>Pushed a commit to <a class="github-link" href="{{ event.repo.url | git_api_to_html }}">{{ event.repo.name }}</a>:</span>
                                         <ul>
-                                            <li><a class="github-link" href="{{ event.payload.commits[0].url | git_api_to_html }}">{{ event.payload.commits[0].message }}</a></li>
+                                            <li><a class="github-link" href="{{ event.payload.commits[0].url | git_api_to_html }}">{{ event.payload.commits[0].message }} </a>({{ event.created_at | format_time }})</li>
                                         </ul>
                                     </li>
                                 {% else %}
@@ -89,13 +89,13 @@
                                         <span>Pushed {{ event.payload.commits | length }} commits to <a class="github-link" href="{{ event.repo.url | git_api_to_html }}">{{ event.repo.name }}</a></span>
                                         <ul>
                                             {% for commit in event.payload.commits %}
-                                                <li><a class="github-link" href="{{ commit.url | git_api_to_html }}">{{ commit.message }}</a></li>
+                                                <li><a class="github-link" href="{{ commit.url | git_api_to_html }}">{{ commit.message }} </a>({{ event.created_at | format_time }})</li>
                                             {% endfor %}
                                         </ul>
                                     </li>
                                 {% endif %}
                             {% elif event.type == "CreateEvent" %}
-                                <li><span>Created <a class="github-link" href="{{ event.repo.url | git_api_to_html }}">{{ event.repo.name }}</a>: {{ event.payload.description }}</span></li>
+                                <li><span>Created <a class="github-link" href="{{ event.repo.url | git_api_to_html }}">{{ event.repo.name }}</a>: {{ event.payload.description }} ({{ event.created_at | format_time }})</span></li>
                             {% elif event.type == "ForkEvent" %}
                                 <li><span>Forked a repo at <a class="github-link" href="{{ event.payload.forkee.html_url }}">{{ event.repo.name }}</a></span></li>
                             {% endif %}

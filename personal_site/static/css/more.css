@@ -127,6 +127,11 @@ i.spotify-preview.loading:before {
     padding: 0 20px;
 }
 
+.github-activity li {
+    line-height: 1.2em;
+    padding: 0 0 0.3em 0;
+}
+
 @media (max-width: 840px) {
     .github-content {
         display: block;

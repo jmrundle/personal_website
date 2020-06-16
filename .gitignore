@@ -1,9 +1,13 @@
 # ignore instance files, but keep folder structure and example files
-instance/*
-!instance/*/
-!/instance/*.example
-instance/*/*
-!instance/*/.gitkeep
+#instance/*
+#!instance/*/
+#!/instance/*.example
+#instance/*/*
+#!instance/*/.gitkeep
+
+**/.env
+**/.spotify-cache
+
 
 venv/
 __pycache__/

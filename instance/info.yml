@@ -1,0 +1,126 @@
+name: Jack Rundle
+description: Computer Science @ ND
+avatar: /resources/headshot.png
+
+social_usernames:
+  email:  jackrundle530@gmail.com
+  github: jmrundle
+  linkedin: jack-rundle-b338a1134
+  resume: /resources/resume.pdf
+  #twitter: Rundle530
+  spotify: jackrundle530
+
+resume:
+  sections:
+    - title: Education
+      items:
+        - title: University of Notre Dame
+          subtitle: Computer Science • 3.97 GPA
+          location: Notre Dame, IN
+          date: May 2022
+          image: /resources/nd_logo.png
+          items:
+            - Software Development Practices and Principles
+            - Compilers & Language Design
+            - Programming Paradigms
+            - Theory of Computing
+            - Systems Programming
+            - Computer Architecture
+            - Data Structures
+            - Fundamentals of Computing
+            - Logic Design & Sequential Circuits
+            - Discrete Math
+            - Intro to Embedded Systems & Internet of Things
+
+    - title: Experience
+      items:
+        - title: Fidelity Investments
+          subtitle: Software Engineering Intern
+          location: Raleigh, NC
+          date: June 2020 - July 2020
+          image: /resources/fidelity_logo.png
+          items:
+            - Incoming Intern on Defined Benefits team
+            - Will use C++ in an Agile environment
+        - title: Huber & Associates, Inc.
+          subtitle: Warehouse Worker
+          location: Jefferson City, MO
+          date: March 2020 - Present
+          image: /resources/huber_logo.png
+          items:
+            - Imaged and shipped thousands of Lenovo servers to a nationwide client
+            - Developed a variety of PHP and Bash scripts to automate server inventory and testing
+        - title: Huber & Associates, Inc.
+          subtitle: Application Development Intern
+          location: Jefferson City, MO
+          date: May 2019 - April 2020
+          image: /resources/huber_logo.png
+          items:
+            - Coordinated with Accounting dept. to design automated SSRS financial analyses, reducing required labor by 75%
+            - Conceptualized, developed, and documented an intranet website to manage company event planning/signups
+            - Implemented MVC architecture with ASP.NET, along with jQuery and Bootstrap for frontend, and SQL for data storage
+            - Configured site to use Windows Authentication against company LDAP
+            - Investigated and proposed the potential applications of the IBM Watson API to upper management with custom Python/Flask prototypes and Node.js endpoints
+            - Collaborated with a government office to help transfer website content from one CMS to another
+        - title: University of Notre Dame - Hesburgh Libraries
+          subtitle: Student Assistant
+          location: Notre Dame, IN
+          date: September 2018 - May 2019
+          image: /resources/nd_logo.png
+          items:
+            - Monitored and updated the Notre Dame LibGuide website to ensure that all technical guidelines were met
+
+    - title: Projects
+      items:
+        - title: This Site
+          date: May 2020
+          items:
+            - Created a Flask-based website template from scratch, utilizing vanilla JS and HTML/CSS for front-end
+            - Features automatic site generation based on a configuration of YML files and Markdown files for a blog
+            - Integrated Spotify and Github API’s to gather additional information
+        - title: Dameros Website
+          date: Spring 2020
+          items:
+            - Deploying a Flask-based website for a Notre Dame non-profit
+            - Regularly meet with development team remotely to discuss benchmarks and deadlines
+        - title: HTTP Server
+          date: April 2020
+          items:
+            - Utilized system calls in C to develop a simple HTTP server
+            - Supported directory listings, mimetype prediction, image previews, and CGI scripts
+            - Leveraged a custom Python HTTP client and Bash script to test the latency and throughput of the server
+            - Deployed to an AWS EC2 instance
+        - title: Rubik's Cube Solver
+          date: Spring 2019
+          items:
+            - Constructed a computational model and physical machine to solve a Rubik’s Cube
+            - Developed a conditional solution algorithm in MATLAB and programmed an Arduino to actuate corresponding motors
+            - Selected as one of the five featured projects among all freshmen engineers and invited to present to incoming class
+        - title: Handicap Manager
+          date: Summer 2018
+          items:
+            - Designed and implemented a Python based golf handicap management program with a GUI and user login system
+            - Created a Python script to parse online USGA course and tee data
+            - Utilized Google’s Geocoding API in populating a SQLite database with information on over 14,000 U.S. courses
+
+    - title: Technical Skills
+      items:
+        - title: Languages
+          items:
+            - C/C++
+            - C#
+            - HTML/CSS
+            - MATLAB
+            - Python
+            - Verilog HDL
+        - title: Other
+          items:
+            - ASP.NET
+            - Bootstrap
+            - jQuery
+            - Flask
+            - Git
+            - Linux
+            - Shell Scripting
+            - SQL
+            - Vim

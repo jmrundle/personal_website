@@ -1,24 +1,6 @@
 from functools import wraps
 
 
-class Social:
-    def __init__(self,
-                 name,
-                 url_prefix,
-                 fa_icon,
-                 username,
-                 bg_col):
-        self.name       = name
-        self.url_prefix = url_prefix
-        self.fa_icon    = fa_icon
-        self.username   = username
-        self.bg_col     = bg_col
-
-    @property
-    def url(self):
-        return self.url_prefix + self.username
-
-
 class NavigationLink:
     def __init__(self, endpoint, title):
         self.endpoint = endpoint
