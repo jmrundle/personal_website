@@ -1,5 +1,6 @@
 import os
 import sys
+import io
 import time
 import json
 import requests
@@ -131,12 +132,11 @@ class SpotifyOAuthWithS3Cache(WaitingForPyPiUpdateSpotifyOAuth):
 
     def get_cached_token(self):
         # pull from S3 to local file
-        self.s3_client.download_file(self.s3_bucket, self.s3_cache_file, self.cache_path)
-
-        with open(self.cache_path) as f:
-            token_info_string = f.read()
-
-        token_info = json.loads(token_info_string)
+        s3 = boto3.resource('s3')
+        obj = s3.Object(self.s3_bucket, self.s3_cache_file)
+        data = io.BytesIO()
+        obj.download_fileobj(data)
+        token_info = json.loads(data.getvalue().decode("utf-8"))
 
         if self.is_token_expired(token_info):
             token_info = self.refresh_access_token(
