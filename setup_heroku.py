@@ -19,28 +19,12 @@ def env_vars():
     return declarations
 
 
-def spotipy_cache_var():
-    cache_file = Config.SPOTIFY_CACHE_PATH
-
-    if not os.path.exists(cache_file):
-        print("Hey, you need to run setup_spotify.py", file=sys.stderr)
-        sys.exit(2)
-
-    with open(cache_file, 'r') as cache:
-        token_info = cache.read().rstrip()
-        declaration = f"SPOTIPY_CACHE='{token_info}'"
-
-    return declaration
-
-
 def set_heroku_config(declarations):
     os.system(f"heroku config:set {declarations}")
 
 
 def main():
-    declarations = ""
-    declarations += env_vars()
-    declarations += spotipy_cache_var()
+    declarations = env_vars()
     set_heroku_config(declarations)
 
 

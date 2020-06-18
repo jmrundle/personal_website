@@ -1,8 +1,8 @@
 # Personal Site
- - Source files for a simple website template
+ - Source files for a personal website template
  - Runs on a Flask web server
  - Generates content from a configuration of YML files
- - (*Will be*) deployed to an AWS EC2 instance 
+ - Stores static content with AWS S3
 
 ---
 
@@ -48,6 +48,7 @@ pip3 install -r requirements.txt
         !instance/*/.gitkeep
         ```
       - Actually, right now it is tracked by GIT, but I'll look into S3 deployment later
+      - [Generate AWS IAM Credentials](https://console.aws.amazon.com/iam/home?region=us-east-2#/security_credentials)
 ---
 
 ### Integrating API Services

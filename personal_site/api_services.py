@@ -4,6 +4,8 @@ import time
 import json
 import requests
 import spotipy
+import boto3
+from .oauth2 import SpotifyOAuth as WaitingForPyPiUpdateSpotifyOAuth
 
 
 class ApiServices:
@@ -17,7 +19,9 @@ class ApiServices:
             client_secret=app.config["SPOTIFY_CLIENT_SECRET"],
             redirect_uri=app.config["SPOTIFY_REDIRECT_URI"],
             cache_path=app.config["SPOTIFY_CACHE_PATH"],
-            scopes=app.config["SPOTIFY_SCOPES"]
+            scopes=app.config["SPOTIFY_SCOPES"],
+            s3_bucket=app.config["S3_BUCKET"],
+            s3_cache_file=app.config["S3_CACHE_FILE"]
         )
 
         self.services       = [self.spotify, self.github]
@@ -81,13 +85,15 @@ class Github(ApiObject):
 class Spotify(ApiObject):
     TOP_LIMIT = 8
 
-    def __init__(self, client_id, client_secret, redirect_uri, cache_path, scopes):
-        oauth_manager = spotipy.SpotifyOAuth(
+    def __init__(self, client_id, client_secret, redirect_uri, cache_path, scopes, s3_bucket, s3_cache_file):
+        oauth_manager = SpotifyOAuthWithS3Cache(
             client_id=client_id,
             client_secret=client_secret,
             redirect_uri=redirect_uri,
             cache_path=cache_path,
-            scope=scopes
+            scope=scopes,
+            s3_bucket=s3_bucket,
+            s3_cache_file=s3_cache_file
         )
 
         """
@@ -115,12 +121,21 @@ class Spotify(ApiObject):
         return self.wrapper.current_user_top_tracks(limit=self.TOP_LIMIT, time_range="short_term")
 
 
-"""
-class CustomOAuth(spotipy.SpotifyOAuth):
+class SpotifyOAuthWithS3Cache(WaitingForPyPiUpdateSpotifyOAuth):
+    def __init__(self, s3_bucket, s3_cache_file, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.s3_client = boto3.client("s3")
+        self.s3_bucket = s3_bucket
+        self.s3_cache_file = s3_cache_file
+
     def get_cached_token(self):
-        f = open(self.cache_path)
-        token_info_string = f.read()
-        f.close()
+        # pull from S3 to local file
+        self.s3_client.download_file(self.s3_bucket, self.s3_cache_file, self.cache_path)
+
+        with open(self.cache_path) as f:
+            token_info_string = f.read()
+
         token_info = json.loads(token_info_string)
 
         if self.is_token_expired(token_info):
@@ -131,7 +146,11 @@ class CustomOAuth(spotipy.SpotifyOAuth):
         return token_info
 
     def _save_token_info(self, token_info):
-        f = open(self.cache_path, "w")
+        # save to local file
+        f = open(self.cache_path, "w+")
         f.write(json.dumps(token_info))
         f.close()
-"""
+
+        # copy file to S3
+        self.s3_client.upload_file(self.cache_path, self.s3_bucket, self.s3_cache_file)
+

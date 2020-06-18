@@ -66,6 +66,12 @@ class Config(object):
     SPOTIFY_CACHE_PATH    = os.path.join(TMP_PATH, ".spotify-cache")
     SPOTIFY_SCOPES        = "user-top-read"
 
+    AWS_ACCESS_KEY_ID     = os.environ.get("AWS_ACCESS_KEY_ID")
+    AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY")
+    AWS_DEFAULT_REGION    = os.environ.get("AWS_DEFAULT_REGION", "us-east-1")
+    S3_BUCKET             = os.environ.get("S3_BUCKET", "personal-site-storage")
+    S3_CACHE_FILE         = ".spotify-cache"
+
     # information from info.yml
     INSTANCE_INFO  = load_instance_info(DATA_FILE)
 
