@@ -10,14 +10,9 @@
             <section>
                 <header id="intro">
                     <h1>{{ g_name }}</h1>
-                    <p>
-                        I am a junior Computer Science major at the University of Notre Dame, and
-                        I come from Jefferson City, Missouri.
-                    </p>
-                    <p>
-                        In my free time, I enjoy playing golf, messing around with technology,
-                        watching sports, and listening to music.
-                    </p>
+                    {% for line in about %}
+                        <p>{{ line }}</p>
+                    {% endfor %}
                 </header>
                 <footer id="colorful-socials">
                     <ul>

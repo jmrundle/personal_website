@@ -1,6 +1,9 @@
 name: Jack Rundle
 description: Computer Science @ ND
 avatar: /resources/headshot.png
+about:
+  - I'm a junior Computer Science major at the University of Notre Dame, from Jefferson City, Missouri
+  - In my free time, I enjoy playing golf, messing around with technology, listening to music, and watching sports.
 
 social_usernames:
   email:  jackrundle530@gmail.com

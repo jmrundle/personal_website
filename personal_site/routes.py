@@ -30,7 +30,7 @@ def register_routes(app):
     @app.route("/", methods=["GET"])
     @nav.register("/", "Home")
     def index():
-        return render_template("index.html")
+        return render_template("index.html", about=app.config["INSTANCE_INFO"]["about"])
 
     # @cache
     @app.route("/more", methods=["GET"])
