@@ -19,7 +19,6 @@ class ApiServices:
             client_id=app.config["SPOTIFY_CLIENT_ID"],
             client_secret=app.config["SPOTIFY_CLIENT_SECRET"],
             redirect_uri=app.config["SPOTIFY_REDIRECT_URI"],
-            cache_path=app.config["SPOTIFY_CACHE_PATH"],
             scopes=app.config["SPOTIFY_SCOPES"],
             s3_bucket=app.config["S3_BUCKET"],
             s3_cache_file=app.config["S3_CACHE_FILE"]
@@ -86,12 +85,11 @@ class Github(ApiObject):
 class Spotify(ApiObject):
     TOP_LIMIT = 8
 
-    def __init__(self, client_id, client_secret, redirect_uri, cache_path, scopes, s3_bucket, s3_cache_file):
+    def __init__(self, client_id, client_secret, redirect_uri, scopes, s3_bucket, s3_cache_file):
         oauth_manager = SpotifyOAuthWithS3Cache(
             client_id=client_id,
             client_secret=client_secret,
             redirect_uri=redirect_uri,
-            cache_path=cache_path,
             scope=scopes,
             s3_bucket=s3_bucket,
             s3_cache_file=s3_cache_file
@@ -125,18 +123,18 @@ class Spotify(ApiObject):
 class SpotifyOAuthWithS3Cache(WaitingForPyPiUpdateSpotifyOAuth):
     def __init__(self, s3_bucket, s3_cache_file, *args, **kwargs):
         super().__init__(*args, **kwargs)
-
-        self.s3_client = boto3.client("s3")
-        self.s3_bucket = s3_bucket
-        self.s3_cache_file = s3_cache_file
+        self.s3_key = boto3.resource("s3").Bucket(s3_bucket).Object(key=s3_cache_file)
 
     def get_cached_token(self):
-        # pull from S3 to local file
-        s3 = boto3.resource('s3')
+        # pull from S3
+        data = self.s3_key.get()["Body"]
+        token_info = json.load(data)
+        """
         obj = s3.Object(self.s3_bucket, self.s3_cache_file)
         data = io.BytesIO()
         obj.download_fileobj(data)
         token_info = json.loads(data.getvalue().decode("utf-8"))
+        """
 
         if self.is_token_expired(token_info):
             token_info = self.refresh_access_token(
@@ -146,11 +144,17 @@ class SpotifyOAuthWithS3Cache(WaitingForPyPiUpdateSpotifyOAuth):
         return token_info
 
     def _save_token_info(self, token_info):
-        # save to local file
-        f = open(self.cache_path, "w+")
-        f.write(json.dumps(token_info))
-        f.close()
+        # push to s3
+        data = json.dumps(token_info)
+        self.s3_key.put(Body=data)
 
+        """
+        # data = io.BytesIO()
+        # data.write(json.dumps(token_info).encode())
+        k = Key(bucket)
+        k.key = self.s3_bucket
+        k.set_contents_from_string('This is a test of S3')
         # copy file to S3
-        self.s3_client.upload_file(self.cache_path, self.s3_bucket, self.s3_cache_file)
+        self.s3_client.upload_file(data, self.s3_bucket, self.s3_cache_file)
+        """
 

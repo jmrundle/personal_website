@@ -42,14 +42,12 @@ class Config(object):
     # instance
     #   |___ posts/
     #   |___ resources/
-    #   |___ tmp/
     #   |___ .env
     #   |___ info.yml
     ENV_FILE      = ".env"
     INSTANCE_PATH = os.path.join(os.path.dirname(__file__), "instance")
     POSTS_PATH    = os.path.join(INSTANCE_PATH, "posts")
     RESOURCE_PATH = os.path.join(INSTANCE_PATH, "resources")
-    TMP_PATH      = os.path.join(INSTANCE_PATH, "tmp")
     DATA_FILE     = os.path.join(INSTANCE_PATH, "info.yml")
 
     # load env variables from optional .env file
@@ -63,7 +61,6 @@ class Config(object):
     SPOTIFY_CLIENT_ID     = os.environ.get('SPOTIFY_CLIENT_ID')
     SPOTIFY_CLIENT_SECRET = os.environ.get('SPOTIFY_CLIENT_SECRET')
     SPOTIFY_REDIRECT_URI  = os.environ.get('SPOTIFY_REDIRECT_URI')
-    SPOTIFY_CACHE_PATH    = os.path.join(TMP_PATH, ".spotify-cache")
     SPOTIFY_SCOPES        = "user-top-read"
 
     AWS_ACCESS_KEY_ID     = os.environ.get("AWS_ACCESS_KEY_ID")
