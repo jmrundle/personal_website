@@ -7,16 +7,17 @@ tags:
   - must see
 ---
 
-# Personal Site
- - Source files for my personal site
- - Runs on a Flask web server
- - (*Will be*) deployed to an AWS EC2 instance 
+# Test Post
+1. one
+2. two
+3. three
+4. four
 
 ---
 
 ### Running your own instance
 #### 1. Setup virtual environment (recommended)
-    :::python3
+    :::bash
     python3 -m virtualenv venv
     source venv/bin/activate
     

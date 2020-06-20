@@ -39,19 +39,20 @@ class Config(object):
     API_REFRESH_PERIOD = 1800  # seconds until we refresh API objects (30 min)
 
     # folder structure
-    # instance
+    # .env
+    # instance/
     #   |___ posts/
     #   |___ resources/
-    #   |___ .env
+    #   |___ tmp/
     #   |___ info.yml
-    ENV_FILE      = ".env"
-    INSTANCE_PATH = os.path.join(os.path.dirname(__file__), "instance")
-    POSTS_PATH    = os.path.join(INSTANCE_PATH, "posts")
-    RESOURCE_PATH = os.path.join(INSTANCE_PATH, "resources")
-    DATA_FILE     = os.path.join(INSTANCE_PATH, "info.yml")
+    ENV_FILE     = os.path.join(os.path.dirname(__file__), ".env")
+    INSTANCE_DIR = os.path.join(os.path.dirname(__file__), "instance")
+    POSTS_DIR    = os.path.join(INSTANCE_DIR, "posts")
+    RESOURCE_DIR = os.path.join(INSTANCE_DIR, "resources")
+    TMP_DIR      = os.path.join(INSTANCE_DIR, "tmp")
+    DATA_FILE    = os.path.join(INSTANCE_DIR, "info.yml")
 
     # load env variables from optional .env file
-    #   - NOTE: default path is ./instance/.env
     if os.path.exists(ENV_FILE):
         dotenv.load_dotenv(ENV_FILE, verbose=True)
 
@@ -61,6 +62,7 @@ class Config(object):
     SPOTIFY_CLIENT_ID     = os.environ.get('SPOTIFY_CLIENT_ID')
     SPOTIFY_CLIENT_SECRET = os.environ.get('SPOTIFY_CLIENT_SECRET')
     SPOTIFY_REDIRECT_URI  = os.environ.get('SPOTIFY_REDIRECT_URI')
+    SPOTIFY_CACHE_PATH    = os.path.join(TMP_DIR, ".spotify-cache")
     SPOTIFY_SCOPES        = "user-top-read"
 
     AWS_ACCESS_KEY_ID     = os.environ.get("AWS_ACCESS_KEY_ID")

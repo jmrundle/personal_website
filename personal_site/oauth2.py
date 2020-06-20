@@ -1,3 +1,8 @@
+"""
+Direct clone from spotipy's github page.  Currently waiting for most recent PYPI update
+which fixes bug when trying to override OAuth class
+"""
+
 # -*- coding: utf-8 -*-
 
 __all__ = [

@@ -1,12 +1,9 @@
-import os
-import sys
-import io
 import time
 import json
 import requests
 import spotipy
 import boto3
-from .oauth2 import SpotifyOAuth as WaitingForPyPiUpdateSpotifyOAuth
+from .oauth2 import SpotifyOAuth
 
 
 class ApiServices:
@@ -30,6 +27,7 @@ class ApiServices:
         self.refresh()
 
     def refresh(self):
+        # TODO: do this in background, not attatched to any requests
         now = time.time()
 
         if (now - self.last_refresh) > self.refresh_period:
@@ -91,16 +89,9 @@ class Spotify(ApiObject):
             client_secret=client_secret,
             redirect_uri=redirect_uri,
             scope=scopes,
-            s3_bucket=s3_bucket,
+            s3_bucket_name=s3_bucket,
             s3_cache_file=s3_cache_file
         )
-
-        """
-        # make sure cache file exists
-        if not os.path.exists(cache_path):
-            print("Need to generate Spotify API token first. Run setup_spotify.py.", file=sys.stderr)
-            sys.exit(1)
-        """
 
         self.wrapper     = spotipy.Spotify(oauth_manager=oauth_manager)
         self.top_artists = []
@@ -120,41 +111,39 @@ class Spotify(ApiObject):
         return self.wrapper.current_user_top_tracks(limit=self.TOP_LIMIT, time_range="short_term")
 
 
-class SpotifyOAuthWithS3Cache(WaitingForPyPiUpdateSpotifyOAuth):
-    def __init__(self, s3_bucket, s3_cache_file, *args, **kwargs):
+# overwrite base SpotifyOAuth Class to support S3 cache storage
+class SpotifyOAuthWithS3Cache(SpotifyOAuth):
+    def __init__(self, s3_bucket_name, s3_cache_file, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.s3_key = boto3.resource("s3").Bucket(s3_bucket).Object(key=s3_cache_file)
+        s3          = boto3.resource("s3")
+        s3_bucket   = s3.Bucket(s3_bucket_name)
+        self.s3_key = s3_bucket.Object(key=s3_cache_file)
+
+        self.cached_token = None
 
     def get_cached_token(self):
+        if self.cached_token is not None:
+            return self.cached_token
+
         # pull from S3
         data = self.s3_key.get()["Body"]
         token_info = json.load(data)
-        """
-        obj = s3.Object(self.s3_bucket, self.s3_cache_file)
-        data = io.BytesIO()
-        obj.download_fileobj(data)
-        token_info = json.loads(data.getvalue().decode("utf-8"))
-        """
 
         if self.is_token_expired(token_info):
             token_info = self.refresh_access_token(
                 token_info["refresh_token"]
             )
 
+        # subsequent calls will return same object
+        self.cached_token = token_info
+
         return token_info
 
     def _save_token_info(self, token_info):
+        # update local cached token
+        self.cached_token = token_info
+
         # push to s3
+        # TODO: make this asynchronous
         data = json.dumps(token_info)
         self.s3_key.put(Body=data)
-
-        """
-        # data = io.BytesIO()
-        # data.write(json.dumps(token_info).encode())
-        k = Key(bucket)
-        k.key = self.s3_bucket
-        k.set_contents_from_string('This is a test of S3')
-        # copy file to S3
-        self.s3_client.upload_file(data, self.s3_bucket, self.s3_cache_file)
-        """
-

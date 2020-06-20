@@ -11,7 +11,7 @@ def register_routes(app):
     # load these once
     apis   = ApiServices(app)
     nav    = Navigation()
-    posts  = load_posts(app.config["POSTS_PATH"])
+    posts  = load_posts(app.config["POSTS_DIR"])
     resume = app.config["INSTANCE_INFO"]["resume"]
 
     # inject these global variables into each template
@@ -73,10 +73,10 @@ def register_routes(app):
 
     @app.route('/resources/<path:filename>', methods=["GET"])
     def serve(filename):
-        if not os.path.exists(os.path.join(app.config["RESOURCE_PATH"], filename)):
+        if not os.path.exists(os.path.join(app.config["RESOURCE_DIR"], filename)):
             return abort(404)
 
-        return send_from_directory(app.config["RESOURCE_PATH"], filename)
+        return send_from_directory(app.config["RESOURCE_DIR"], filename)
 
     @app.route('/favicon.ico', methods=["GET"])
     def favicon():

@@ -1,5 +1,7 @@
-.codehilite .hll { background-color: #c6d1d4 }
-.codehilite  { background: #c6d1d4; }
+.codehilite .hll { background-color: #c1b8b8 }
+.codehilite  { background: #c1b8b8; }
+.codehilite .n { color: #4c4a4a } /* Name */
+.codehilite .p { color: #116fbd } /* Parenthesis */
 .codehilite .c { color: #408080; font-style: italic } /* Comment */
 .codehilite .err { border: 1px solid #FF0000 } /* Error */
 .codehilite .k { color: #008000; font-weight: bold } /* Keyword */
