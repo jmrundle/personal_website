@@ -15,5 +15,10 @@ def git_api_to_html(api_url: str):
         .replace("/commits", "/commit")
 
 
+def css_classes(class_list: list):
+    return " ".join(class_list)
+
+
 jinja2.filters.FILTERS["format_time"] = format_time
 jinja2.filters.FILTERS["git_api_to_html"] = git_api_to_html
+jinja2.filters.FILTERS["css_classes"] = css_classes

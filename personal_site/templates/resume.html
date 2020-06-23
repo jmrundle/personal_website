@@ -11,7 +11,7 @@
 
             <div class="items">
                 {% for item in section["items"] %}
-                    <div class="item">
+                    <div class="item {{ item["css_classes"] | css_classes }}">
                         <div class="item-header">
                             {% if item.image %}
                                 <img src="{{ item.image }}" alt="">
@@ -27,8 +27,8 @@
                         </div>
 
                         <ul>
-                            {% for sub_item in item["items"] %}
-                                <li>{{ sub_item | string }}</li>
+                            {% for description in item["descriptions"] %}
+                                <li>{{ description }}</li>
                             {% endfor %}
                         </ul>
                     </div>

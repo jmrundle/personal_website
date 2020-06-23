@@ -29,3 +29,7 @@ a {
 i {
     color: var(--primary-font-color);
 }
+
+i.with-text {
+    padding: 0.5em 0.2em;
+}

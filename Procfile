@@ -1,1 +1,1 @@
-web: gunicorn 'personal_site:build_app()'
+web: gunicorn -w 3 'personal_site:build_app()'

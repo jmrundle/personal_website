@@ -72,7 +72,7 @@ h2 {
     display: block;
     padding: 10px;
     margin: 10px;
-    max-width: 8em;
+    max-width: 7.8em;
 }
 
 .spotify-image {
@@ -90,8 +90,8 @@ h2 {
 .square {
     position: relative;
     display: inline-block;
-    width: 8em;
-    height: 8em;
+    width: 7.8em;
+    height: 7.8em;
     overflow: hidden;
 }
 

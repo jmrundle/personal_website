@@ -22,7 +22,7 @@
                          <div class="spotify-item">
                              <span class="spotify-title">{{ artist.name }}</span>
                              <div class="square">
-                                 <a href="{{ artist.external_urls.spotify }}">
+                                 <a href="{{ artist.external_urls.spotify }}" target="_blank">
                                      <img class="spotify-image" src="{{ artist.images[0].url }}" alt="{{ artist.name }}">
                                  </a>
                              </div>
@@ -64,7 +64,7 @@
         <div class="api-content">
             <div class="github-content">
                 <div class="github-profile"> <!--col-lg-3 my-auto"-->
-                    <a href="{{ apis.github.profile.html_url }}">
+                    <a href="{{ apis.github.profile.html_url }}" target="_blank">
                         <img width="200" height="200" src="{{ apis.github.profile.avatar_url }}" alt="Github Profile">
                     </a>
                     <span class="g-card fullname">{{ apis.github.profile.name }}</span>
@@ -81,23 +81,23 @@
                                     <li>
                                         <span>Pushed a commit to <a class="github-link" href="{{ event.repo.url | git_api_to_html }}">{{ event.repo.name }}</a>:</span>
                                         <ul>
-                                            <li><a class="github-link" href="{{ event.payload.commits[0].url | git_api_to_html }}">{{ event.payload.commits[0].message }} </a>({{ event.created_at | format_time }})</li>
+                                            <li><a class="github-link" href="{{ event.payload.commits[0].url | git_api_to_html }}" target="_blank">{{ event.payload.commits[0].message }} </a>({{ event.created_at | format_time }})</li>
                                         </ul>
                                     </li>
                                 {% else %}
                                     <li>
-                                        <span>Pushed {{ event.payload.commits | length }} commits to <a class="github-link" href="{{ event.repo.url | git_api_to_html }}">{{ event.repo.name }}</a></span>
+                                        <span>Pushed {{ event.payload.commits | length }} commits to <a class="github-link" href="{{ event.repo.url | git_api_to_html }}" target="_blank">{{ event.repo.name }}</a></span>
                                         <ul>
                                             {% for commit in event.payload.commits %}
-                                                <li><a class="github-link" href="{{ commit.url | git_api_to_html }}">{{ commit.message }} </a>({{ event.created_at | format_time }})</li>
+                                                <li><a class="github-link" href="{{ commit.url | git_api_to_html }}" target="_blank">{{ commit.message }} </a>({{ event.created_at | format_time }})</li>
                                             {% endfor %}
                                         </ul>
                                     </li>
                                 {% endif %}
                             {% elif event.type == "CreateEvent" %}
-                                <li><span>Created <a class="github-link" href="{{ event.repo.url | git_api_to_html }}">{{ event.repo.name }}</a>: {{ event.payload.description }} ({{ event.created_at | format_time }})</span></li>
+                                <li><span>Created <a class="github-link" href="{{ event.repo.url | git_api_to_html }}" target="_blank">{{ event.repo.name }}</a>: {{ event.payload.description }} ({{ event.created_at | format_time }})</span></li>
                             {% elif event.type == "ForkEvent" %}
-                                <li><span>Forked a repo at <a class="github-link" href="{{ event.payload.forkee.html_url }}">{{ event.repo.name }}</a></span></li>
+                                <li><span>Forked a repo at <a class="github-link" href="{{ event.payload.forkee.html_url }}" target="_blank">{{ event.repo.name }}</a></span></li>
                             {% endif %}
                         {% endfor %}
                     </ul>

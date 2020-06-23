@@ -13,14 +13,14 @@
                     <li>{{ tag }}</li>
                 {% endfor %}
             </ul>
-            <a href="/posts"><i class="fa fa-undo"></i>Clear Tags</a>
+            <a href="/posts"><i class="fa fa-undo with-text"></i>Clear Tags</a>
         </div>
     {% endif %}
 
     <div class="posts">
         {% for endpoint, post in post_data %}
-            <a class="post-link" href="/posts/{{ endpoint }}">
-                <div class="post">
+            <div class="post">
+                <a class="post-link" href="/posts/{{ endpoint }}">
                     <div class="post-thumbnail" style="background-image: url({{ post.image }}"></div>
                     <div class="post-header">
                         <h3 class="post-title">{{ post.title }}</h3>
@@ -31,8 +31,8 @@
                             {% endfor %}
                         </div>
                     </div>
-                </div>
-            </a>
+                </a>
+            </div>
         {% endfor %}
     </div>
 {% endblock %}

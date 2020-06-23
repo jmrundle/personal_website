@@ -9,6 +9,7 @@
 }
 #content p {
     width: 80%;
+    max-width: 30em;
     display: inline-block;
     text-align: left;
 }
@@ -41,7 +42,9 @@ footer li:hover {
 }
 .center-container {
     display: table;
+    background-color: #0000006b;
     height: 100%;
+    width: 100%;
 }
 .centered-content {
     display: table-cell;
@@ -49,10 +52,9 @@ footer li:hover {
     padding: 0 20px;
 }
 .centered-content > section {
-    background-color: var(--main-bg-color);
-    border-radius: 4em;
 }
 .content-wrapper {
     padding: 0;
     background-image: url("/resources/background.jpg");
+    background-size: cover;
 }
