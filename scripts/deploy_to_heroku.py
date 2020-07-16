@@ -1,15 +1,13 @@
 #!/usr/bin/env python3
 
-from config import Config
+from config.app_config import BaseConfig
 import boto3
-import setup_spotify
-import setup_heroku
+from scripts import setup_heroku, setup_spotify
 
-
-BUCKET_NAME  = Config.S3_BUCKET
-REGION       = Config.AWS_DEFAULT_REGION
-RESOURCE_DIR = Config.RESOURCE_DIR
-CACHE_PATH   = Config.SPOTIFY_CACHE_PATH
+BUCKET_NAME  = BaseConfig.S3_BUCKET
+REGION       = BaseConfig.AWS_DEFAULT_REGION
+RESOURCE_DIR = BaseConfig.RESOURCE_DIR
+CACHE_PATH   = BaseConfig.SPOTIFY_CACHE_PATH
 
 
 def bucket_exists(bucket_name):

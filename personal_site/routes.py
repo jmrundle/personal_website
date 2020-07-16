@@ -1,5 +1,6 @@
 import os.path
 from flask import render_template, send_from_directory, abort, request
+from flask_caching import Cache
 import markdown
 import markdown.extensions.codehilite
 from .api_services import ApiServices
@@ -8,10 +9,12 @@ from .posts import load_posts, is_subset
 
 
 def register_routes(app):
+    cache = Cache(app, config={'CACHE_TYPE': 'simple'})
+    refresh_period = int(app.config["API_REFRESH_PERIOD"])
+
     # load these once
-    apis   = ApiServices(app)
-    nav    = Navigation()
-    posts  = load_posts(app.config["POSTS_DIR"])
+    nav = Navigation()
+    posts = load_posts(app.config["POSTS_DIR"])
     resume = app.config["INSTANCE_INFO"]["resume"]
 
     # inject these global variables into each template
@@ -32,12 +35,13 @@ def register_routes(app):
     def index():
         return render_template("index.html", about=app.config["INSTANCE_INFO"]["about"])
 
-    # @cache
     @app.route("/more", methods=["GET"])
     @nav.register("/more", "More")
+    @cache.cached(timeout=refresh_period)
     def more():
-        apis.refresh()
-        return render_template("more.html", apis=apis)
+        api_services = ApiServices(app)
+
+        return render_template("more.html", apis=api_services)
 
     @app.route("/resume", methods=["GET"])
     @nav.register("/resume", "Resume")

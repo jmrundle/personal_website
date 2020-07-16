@@ -13,11 +13,11 @@ class Social:
         self.url        = url_prefix + username
 
 
-def load_instance_info(info_path):
+def load_instance_info(social_config_path, info_path):
     info = yaml.load(open(info_path, 'r'), Loader=yaml.FullLoader)
 
     # associate username's with URL prefixes, icons, etc.
-    social_config = yaml.load(open("social_config.yml", 'r'), Loader=yaml.FullLoader)
+    social_config = yaml.load(open(social_config_path, 'r'), Loader=yaml.FullLoader)
     social_objects = {}
     for platform in info["social_usernames"]:
         if platform not in social_config:
@@ -31,30 +31,41 @@ def load_instance_info(info_path):
     return info
 
 
-class Config(object):
+class BaseConfig(object):
     # Flask related
     DEBUG   = False
     TESTING = False
 
-    API_REFRESH_PERIOD = 1800  # seconds until we refresh API objects (30 min)
+    """
+    folder structure
+    
+    config
+        \___ .env
+        \___ app_config.py
+        \___ socials.yml
+    instance
+        \___ posts/
+        \___ resources/
+        \___ tmp/
+        \___ info.yml
+    """
 
-    # folder structure
-    # .env
-    # instance/
-    #   |___ posts/
-    #   |___ resources/
-    #   |___ tmp/
-    #   |___ info.yml
-    ENV_FILE     = os.path.join(os.path.dirname(__file__), ".env")
-    INSTANCE_DIR = os.path.join(os.path.dirname(__file__), "instance")
+    ROOT_DIR     = os.path.join(os.path.dirname(__file__), "..")
+    CONFIG_DIR   = os.path.join(ROOT_DIR, "config")
+    ENV_FILE     = os.path.join(CONFIG_DIR, ".env")
+    SOCIAL_CONFIG = os.path.join(CONFIG_DIR, "socials.yml")
+    INSTANCE_DIR = os.path.join(ROOT_DIR, "instance")
     POSTS_DIR    = os.path.join(INSTANCE_DIR, "posts")
     RESOURCE_DIR = os.path.join(INSTANCE_DIR, "resources")
     TMP_DIR      = os.path.join(INSTANCE_DIR, "tmp")
     DATA_FILE    = os.path.join(INSTANCE_DIR, "info.yml")
 
-    # load env variables from optional .env file
+    # load env variables from .env file
     if os.path.exists(ENV_FILE):
         dotenv.load_dotenv(ENV_FILE, verbose=True)
+
+    API_REFRESH_PERIOD = 1800  # seconds until we refresh API objects (30 min)
+    API_CACHE_FILE = os.path.join(TMP_DIR, "api.json")
 
     # load secret keys into flask config object
     #   - raise exception if not set
@@ -72,16 +83,16 @@ class Config(object):
     S3_CACHE_FILE         = ".spotify-cache"
 
     # information from info.yml
-    INSTANCE_INFO  = load_instance_info(DATA_FILE)
+    INSTANCE_INFO  = load_instance_info(SOCIAL_CONFIG, DATA_FILE)
 
 
-class ProductionConfig(Config):
+class Production(BaseConfig):
     pass
 
 
-class DevelopmentConfig(Config):
+class Development(BaseConfig):
     DEBUG = True
 
 
-class TestingConfig(Config):
+class Testing(BaseConfig):
     TESTING = True

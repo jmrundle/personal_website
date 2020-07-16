@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 import os
 import sys
-from config import Config
+from config.app_config import BaseConfig
 
 
 def env_vars():
-    env_file   = Config.ENV_FILE
+    env_file   = BaseConfig.ENV_FILE
     declarations = ""
 
     if not os.path.exists(env_file):

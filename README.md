@@ -21,12 +21,12 @@ pip3 install -r requirements.txt
 #### 3. Config
 - There are four main config files
     - Public: 
-        1. [config.py](config.py): public configuration
-        2. [social_config.yml](social_config.yml): configures how we handle a given social media platform (shouldn't need to touch, unless you wan't to add support for another platform)
+        1. [config.py](config/app_config.py): public configuration
+        2. [social_config.yml](config/socials.yml): configures how we handle a given social media platform (shouldn't need to touch, unless you wan't to add support for another platform)
     - Private
         1. [instance/info.yml](instance/info.yml): information for site
            - Stores name, social media usernames, resume info, etc. to generate site content
-        2. [.env](.env):  completely optional file to declare environmental variables.  Use this for API keys, access tokens, etc.
+        2. [.env](config/.env):  completely optional file to declare environmental variables.  Use this for API keys, access tokens, etc.
             - NOTE: this is simply an alternative to setting each env variable explicitly in the shell with: 
               ```bash
               export CONFIG_VARIABLE=value
@@ -38,7 +38,7 @@ pip3 install -r requirements.txt
          - the [posts](instance/posts) directory contains all the markdown files for the blog, each of which contains a frontmatter with brief metadata about the post
          - the [resources](instance/resources) directory is used for images, pdf files, etc. to be referenced in [info.yml](instance/info.yml) via `/resources/<filename>`
          - the [tmp](instance/tmp) directory is used to store temporary content, such as cached API tokens
-    - These path to these sub-folders can be configured in [config.py](config.py)
+    - These path to these sub-folders can be configured in [config.py](config/app_config.py)
     - Nothing in this folder is tracked by git, although this behavior can be changed in the [.gitignore](.gitignore) by removing the following lines:
         ```gitignore
         instance/*

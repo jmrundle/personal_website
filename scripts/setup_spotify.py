@@ -2,16 +2,16 @@
 
 import sys
 import spotipy
-from config import Config
+from config.app_config import BaseConfig
 
 
 def main():
-    env_file      = Config.ENV_FILE
-    client_id     = Config.SPOTIFY_CLIENT_ID
-    client_secret = Config.SPOTIFY_CLIENT_SECRET
-    redirect_uri  = Config.SPOTIFY_REDIRECT_URI
-    cache_path    = Config.SPOTIFY_CACHE_PATH
-    scopes        = Config.SPOTIFY_SCOPES
+    env_file      = BaseConfig.ENV_FILE
+    client_id     = BaseConfig.SPOTIFY_CLIENT_ID
+    client_secret = BaseConfig.SPOTIFY_CLIENT_SECRET
+    redirect_uri  = BaseConfig.SPOTIFY_REDIRECT_URI
+    cache_path    = BaseConfig.SPOTIFY_CACHE_PATH
+    scopes        = BaseConfig.SPOTIFY_SCOPES
 
     if not client_id or not client_secret or not redirect_uri:
         print(f"""
