@@ -1,7 +1,5 @@
-# ignore instance files, but keep folder structure and example files
+instance
 .env
-.spotify-cache
-
 
 venv/
 __pycache__/
