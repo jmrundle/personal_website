@@ -25,17 +25,15 @@ resume:
           css_classes:
             - two-columns
           descriptions:
-            - Software Development Practices and Principles
+            - Software Development
             - Compilers & Language Design
             - Programming Paradigms
             - Theory of Computing
             - Systems Programming
             - Computer Architecture
             - Data Structures
-            - Fundamentals of Computing
-            - Logic Design & Sequential Circuits
             - Discrete Math
-            - Intro to Embedded Systems & Internet of Things
+
 
     - title: Technical Skills
       items:
@@ -49,19 +47,23 @@ resume:
             - MATLAB
             - Python
             - Verilog HDL
+
         - title: Other
           css_classes:
             - two-columns
           descriptions:
+            - Agile Methodologies
             - ASP.NET
+            - AWS (DynamoDB, EC2, S3)
             - Bootstrap
             - jQuery
             - Flask
             - Git
             - Linux
-            - Shell Scripting
+            - Scrum
             - SQL
             - Vim
+
 
     - title: Experience
       items:
@@ -71,8 +73,10 @@ resume:
           date: June 2020 - July 2020
           image: /resources/fidelity_logo.png
           descriptions:
-            - Incoming Intern on Defined Benefits team
-            - Will use C++ in an Agile environment
+            - Developed major enhancements and bug fixes to a Defined Benefits regression testing utility
+            - Architected system in C++ and MySQL to automate monthly QA regressions
+            - Prepared documentation and instructional videos for future developers
+
         - title: Huber & Associates, Inc.
           subtitle: Warehouse Worker
           location: Jefferson City, MO
@@ -81,6 +85,7 @@ resume:
           descriptions:
             - Imaged and shipped thousands of Lenovo servers to a nationwide client
             - Developed a variety of PHP and Bash scripts to automate server inventory and testing
+
         - title: Huber & Associates, Inc.
           subtitle: Application Development Intern
           location: Jefferson City, MO
@@ -93,6 +98,7 @@ resume:
             - Configured site to use Windows Authentication against company LDAP
             - Investigated and proposed the potential applications of the IBM Watson API to upper management with custom Python/Flask prototypes and Node.js endpoints
             - Collaborated with a government office to help transfer website content from one CMS to another
+
         - title: University of Notre Dame - Hesburgh Libraries
           subtitle: Student Assistant
           location: Notre Dame, IN
@@ -101,19 +107,22 @@ resume:
           descriptions:
             - Monitored and updated the Notre Dame LibGuide website to ensure that all technical guidelines were met
 
+
     - title: Projects
       items:
         - title: This Site
           date: May 2020
           descriptions:
-            - Created a Flask-based website template from scratch, utilizing vanilla JS and HTML/CSS for front-end
-            - Features automatic site generation based on a config of YML files and Markdown files for a blog
+            - Designed an AWS EC2 hosted website from scratch, using Flask + Nginx for backend and vanilla JS + CSS for front-end
             - Integrated Spotify and Github API’s to gather additional information
+            - Features automatic site generation based on a config of YML files and Markdown files for a blog
+
         - title: Dameros Website
           date: Spring 2020
           descriptions:
             - Deploying a Flask-based website for a Notre Dame non-profit
             - Regularly meet with development team remotely to discuss benchmarks and deadlines
+
         - title: HTTP Server
           date: April 2020
           descriptions:
@@ -121,12 +130,14 @@ resume:
             - Supported directory listings, mimetype prediction, image previews, and CGI scripts
             - Leveraged a custom Python HTTP client and Bash script to test the latency and throughput of the server
             - Deployed to an AWS EC2 instance
+
         - title: Rubik's Cube Solver
           date: Spring 2019
           descriptions:
             - Constructed a computational model and physical machine to solve a Rubik’s Cube
             - Developed a conditional solution algorithm in MATLAB and programmed an Arduino to actuate corresponding motors
             - Selected as one of the five featured projects among all freshmen engineers and invited to present to incoming class
+
         - title: Handicap Manager
           date: Summer 2018
           descriptions:
