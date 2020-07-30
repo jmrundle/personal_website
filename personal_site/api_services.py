@@ -49,10 +49,10 @@ class Github:
         url = f"{self.API_PREFIX}/users/{self.username}"
         return self._request(url)
 
-    def _events(self):
+    def _events(self, event_count=EVENT_COUNT):
         url = f"{self.API_PREFIX}/users/{self.username}/events"
         requests.get(url)
-        return self._request(url)[:self.EVENT_COUNT]
+        return self._request(url)[:event_count]
 
 
 class Spotify:
@@ -71,11 +71,11 @@ class Spotify:
         self.top_artists = self._top_artists()
         self.top_tracks  = self._top_tracks()
 
-    def _top_artists(self):
-        return self.wrapper.current_user_top_artists(limit=self.TOP_LIMIT, time_range="short_term")
+    def _top_artists(self, top_artists_limit=TOP_LIMIT):
+        return self.wrapper.current_user_top_artists(limit=top_artists_limit, time_range="short_term")
 
-    def _top_tracks(self):
-        return self.wrapper.current_user_top_tracks(limit=self.TOP_LIMIT, time_range="short_term")
+    def _top_tracks(self, top_tracks_limit=TOP_LIMIT):
+        return self.wrapper.current_user_top_tracks(limit=top_tracks_limit, time_range="short_term")
 
 
 """

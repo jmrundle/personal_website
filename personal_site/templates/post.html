@@ -1,10 +1,12 @@
 {% extends "base.html" %}
 
 {% block styles %}
-    <link rel="stylesheet" href="{{ url_for("static", filename="css/codehilite.css") }}">
+    <link rel="stylesheet" href="{{ url_for("static", filename="css/native.css") }}">
+    <link rel="stylesheet" href="{{ url_for("static", filename="css/post.css") }}">
+
 {% endblock %}
 
 {% block content %}
-    {{ post_content | safe }}
-    <a href="/posts"><i class="fa fa-arrow-left with-text"></i>Go Back</a>
+<div class="post-content">{{ post_content | safe }}</div>
+    <a style="padding-bottom: 2em" href="/posts"><i class="fa fa-arrow-left with-text"></i>Go Back</a>
 {% endblock %}

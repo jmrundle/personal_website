@@ -18,12 +18,13 @@
                     </div>
                 </div>
                 <div class="col-right">
-                     {% for artist in apis.spotify.top_artists["items"] %}
+                     {% for artist in spotify.top_artists["items"] %}
                          <div class="spotify-item">
                              <span class="spotify-title">{{ artist.name }}</span>
                              <div class="square">
                                  <a href="{{ artist.external_urls.spotify }}" target="_blank">
                                      <img class="spotify-image" src="{{ artist.images[0].url }}" alt="{{ artist.name }}">
+                                     <span class="rank">{{ loop.index }}</span>
                                  </a>
                              </div>
                          </div>
@@ -39,12 +40,13 @@
                     </div>
                 </div>
                 <div class="col-right">
-                     {% for track in apis.spotify.top_tracks["items"] %}
+                     {% for track in spotify.top_tracks["items"] %}
                          <div class="spotify-item">
                              <span class="spotify-title">{{ track.name }}</span>
                              <div class="spotify-preview-container square">
-                                 <img class="spotify-image" src="{{ track.album.images[0].url }}" alt="{{ track.name }}" >
-                                  <div class="overlay">
+                                 <img class="spotify-image" src="{{ track.album.images[0].url }}" alt="{{ track.name }}">
+                                 <span class="rank">{{ loop.index }}</span>
+                                 <div class="overlay">
                                       <a class="icon" title="Preview Track">
                                           <i class="fa spotify-preview" data-preview-url="{{ track.preview_url }}"></i>
                                       </a>
@@ -64,18 +66,18 @@
         <div class="api-content">
             <div class="github-content">
                 <div class="github-profile"> <!--col-lg-3 my-auto"-->
-                    <a href="{{ apis.github.profile.html_url }}" target="_blank">
-                        <img width="200" height="200" src="{{ apis.github.profile.avatar_url }}" alt="Github Profile">
+                    <a href="{{ github.profile.html_url }}" target="_blank">
+                        <img width="200" height="200" src="{{ github.profile.avatar_url }}" alt="Github Profile">
                     </a>
-                    <span class="g-card fullname">{{ apis.github.profile.name }}</span>
-                    <span class="g-card nickname">{{ apis.github.profile.login }}</span>
-                    <span class="g-card bio">{{ apis.github.profile.bio }}</span>
+                    <span class="g-card fullname">{{ github.profile.name }}</span>
+                    <span class="g-card nickname">{{ github.profile.login }}</span>
+                    <span class="g-card bio">{{ github.profile.bio }}</span>
                 </div>
 
                 <div class="github-activity">
                     <h3>Recent Activity</h3>
                     <ul>
-                        {% for event in apis.github.events %}
+                        {% for event in github.events %}
                             {% if event.type == "PushEvent" %}
                                 {% if (event.payload.commits | length) == 1 %}
                                     <li>

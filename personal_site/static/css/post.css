@@ -1,0 +1,28 @@
+.post-content h1, .post-content h2, .post-content h3, .post-content h4, .post-content h5 {
+    color: var(--secondary-font-color);
+}
+
+.post-content p {
+    line-height: 1.5em;
+    font-family: Verdana, Geneva, sans-serif;
+}
+
+.post-content p + h1, .post-content p + h2, .post-content p + h3, .post-content p + h4, .post-content p + h5 {
+    margin-top: 2em;
+}
+
+.post-content li {
+    line-height: 1.6em;
+}
+
+.post-content a {
+    border-bottom: thin solid;
+    color: #25cebe;
+}
+
+.post-content a:hover {
+    background: #25cebe;
+    color: var(--link-color);
+    border: none;
+    transition: all 600ms;
+}

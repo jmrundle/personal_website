@@ -4,7 +4,7 @@ gunicorn
 requests
 spotipy
 python-dotenv
-markdown
+markdown2
+Pygments
 PyYAML
 python-frontmatter
-boto3==1.13.24

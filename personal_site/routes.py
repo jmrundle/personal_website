@@ -1,11 +1,9 @@
 import os.path
 from flask import render_template, send_from_directory, abort, request
 from flask_caching import Cache
-import markdown
-import markdown.extensions.codehilite
 from .api_services import ApiServices
 from .navigation import Navigation
-from .posts import load_posts, is_subset
+from .posts import Post, load_posts, is_subset
 
 
 def register_routes(app):
@@ -41,7 +39,7 @@ def register_routes(app):
     def more():
         api_services = ApiServices(app)
 
-        return render_template("more.html", apis=api_services)
+        return render_template("more.html", spotify=api_services.spotify, github=api_services.github)
 
     @app.route("/resume", methods=["GET"])
     @nav.register("/resume", "Resume")
@@ -58,22 +56,21 @@ def register_routes(app):
             tags = set(tags.split(','))
 
         post_data = []
-        for endpoint, metadata in posts.items():
-            if tags and not is_subset(tags, metadata["tags"]):
+        for endpoint, post in posts.items():
+            if tags and not is_subset(tags, post.metadata["tags"]):
                 continue
 
-            post_data.append((endpoint, metadata))
+            post_data.append((endpoint, post.metadata))
 
         return render_template("post_listing.html", post_data=post_data, tags=tags)
 
     @app.route("/posts/<name>", methods=["GET"])
-    def post(name):
-        text = posts.get(name, None)
-        if text is None:
+    def post_view(name):
+        post = posts.get(name, None)
+        if post is None:
             return abort(404)
 
-        html = markdown.markdown(text.content, extensions=["codehilite"])
-        return render_template("post.html", post_content=html)
+        return render_template("post.html", post_content=post.html)
 
     @app.route('/resources/<path:filename>', methods=["GET"])
     def serve(filename):

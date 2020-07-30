@@ -22,6 +22,7 @@ fi
 
 echo "Cleaning up local repo"
 rm -rf config/__pycache__/ personal_site/__pycache__
+rm -f config/.DS_Store personal_site/.DS_Store
 
 
 echo "Cleaning up remote repo"
