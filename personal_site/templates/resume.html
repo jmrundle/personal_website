@@ -5,7 +5,8 @@
 {% endblock %}
 
 {% block content %}
-    {% for section in resume["sections"] %}
+    <div class="content-wrapper">
+        {% for section in resume["sections"] %}
         <section>
             <h2 class="section-title">{{ section.title }}</h2>
 
@@ -36,7 +37,6 @@
             </div>
 
         </section>
-
-    {% endfor %}
-
+        {% endfor %}
+    </div>
 {% endblock %}

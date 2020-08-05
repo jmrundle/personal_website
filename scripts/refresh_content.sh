@@ -4,7 +4,7 @@
 #   - must be ran from project root (TODO: change this)
 
 
-if [ $# -ne 2 ]; then
+if [ $# -lt 2 ]; then
     echo "Usage $0 SERVER WWW";
     exit;
 fi

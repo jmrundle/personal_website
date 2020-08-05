@@ -5,34 +5,36 @@
 {% endblock %}
 
 {% block content %}
-    {% if tags %}
-        <div class="tag-header">
-            <h2>Showing Results for tags:</h2>
-            <ul>
-                {% for tag in tags %}
-                    <li>{{ tag }}</li>
-                {% endfor %}
-            </ul>
-            <a href="/posts"><i class="fa fa-undo with-text"></i>Clear Tags</a>
-        </div>
-    {% endif %}
+    <div class="content-wrapper">
+            {% if tags %}
+            <div class="tag-header">
+                <h2>Showing Results for tags:</h2>
+                <ul>
+                    {% for tag in tags %}
+                        <li>{{ tag }}</li>
+                    {% endfor %}
+                </ul>
+                <a href="/posts"><i class="fa fa-undo with-text"></i>Clear Tags</a>
+            </div>
+        {% endif %}
 
-    <div class="posts">
-        {% for endpoint, post in post_data %}
-            <a class="post-link" href="/posts/{{ endpoint }}">
+        <div class="posts">
+            {% for post in post_data %}
                 <div class="post">
-                    <div class="post-thumbnail" style="background-image: url({{ post.image }}"></div>
+                    <a class="post-thumbnail" href="/posts/{{ post.endpoint }}" style="background-image: url({{ post.metadata.image }}"></a>
                     <div class="post-header">
-                        <h3 class="post-title">{{ post.title }}</h3>
-                        <p class="post-description">{{ post.description }}</p>
-                        <div class="post-tags">
-                            {% for tag in post.tags %}
-                                <a class="post-tag" href="/posts?tags={{ tag }}">{{ tag }}</a>
-                            {% endfor %}
-                        </div>
+                        <a class="post-link" href="/posts/{{ post.endpoint }}">
+                            <h3 class="post-title">{{ post.metadata.title }}</h3>
+                            <p class="post-description">{{ post.metadata.description }}</p>
+                            <div class="post-tags">
+                                {% for tag in post.metadata.tags %}
+                                    <a class="post-tag" href="/posts?tags={{ tag }}">{{ tag }}</a>
+                                {% endfor %}
+                            </div>
+                        </a>
                     </div>
                 </div>
-            </a>
-        {% endfor %}
+            {% endfor %}
+        </div>
     </div>
 {% endblock %}

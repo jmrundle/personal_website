@@ -1,3 +1,11 @@
+.content-wrapper {
+    padding: 1.8em;
+}
+.tag-header {
+    padding-bottom: 1em;
+    border-bottom: solid thin;
+    margin-bottom: 1em;
+}
 .posts {
     list-style-type: none;
     padding: 0;

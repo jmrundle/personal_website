@@ -10,6 +10,7 @@ class InvalidPostException(BaseException):
 
 class Post:
     def __init__(self, metadata, html):
+        self.endpoint = None
         self.metadata = metadata
         self.html = html
 
@@ -33,7 +34,8 @@ class Post:
             num += 1
             suffix = '-' + str(num)
 
-        posts[name + suffix] = self
+        self.endpoint = name + suffix
+        posts[self.endpoint] = self
 
 
 def load_posts(post_path, file_extension="md"):

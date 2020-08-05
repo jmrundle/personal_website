@@ -42,19 +42,14 @@ footer li:hover {
 }
 .center-container {
     display: table;
-    background-color: #0000006b;
     height: 100%;
     width: 100%;
+    background-image: url("/resources/background.jpg");
+    background-size: cover;
 }
 .centered-content {
     display: table-cell;
     vertical-align: middle;
     padding: 0 20px;
-}
-.centered-content > section {
-}
-.content-wrapper {
-    padding: 0;
-    background-image: url("/resources/background.jpg");
-    background-size: cover;
+    background-color: #0000006b;
 }

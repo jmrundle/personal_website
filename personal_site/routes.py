@@ -60,7 +60,7 @@ def register_routes(app):
             if tags and not is_subset(tags, post.metadata["tags"]):
                 continue
 
-            post_data.append((endpoint, post.metadata))
+            post_data.append(post)
 
         return render_template("post_listing.html", post_data=post_data, tags=tags)
 
@@ -70,7 +70,7 @@ def register_routes(app):
         if post is None:
             return abort(404)
 
-        return render_template("post.html", post_content=post.html)
+        return render_template("post.html", post=post)
 
     @app.route('/resources/<path:filename>', methods=["GET"])
     def serve(filename):

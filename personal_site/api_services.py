@@ -51,8 +51,13 @@ class Github:
 
     def _events(self, event_count=EVENT_COUNT):
         url = f"{self.API_PREFIX}/users/{self.username}/events"
-        requests.get(url)
-        return self._request(url)[:event_count]
+
+        events = self._request(url)
+
+        if isinstance(events, list):
+            events = events[:event_count]
+
+        return events
 
 
 class Spotify:
@@ -72,11 +77,24 @@ class Spotify:
         self.top_tracks  = self._top_tracks()
 
     def _top_artists(self, top_artists_limit=TOP_LIMIT):
-        return self.wrapper.current_user_top_artists(limit=top_artists_limit, time_range="short_term")
+        artists = []
+
+        try:
+            artists = self.wrapper.current_user_top_artists(limit=top_artists_limit, time_range="short_term")
+        except requests.exceptions.ConnectionError:
+            pass
+
+        return artists
 
     def _top_tracks(self, top_tracks_limit=TOP_LIMIT):
-        return self.wrapper.current_user_top_tracks(limit=top_tracks_limit, time_range="short_term")
+        tracks = []
 
+        try:
+            tracks = self.wrapper.current_user_top_tracks(limit=top_tracks_limit, time_range="short_term")
+        except requests.exceptions.ConnectionError:
+            pass
+
+        return tracks
 
 """
 # overwrite base SpotifyOAuth Class to support S3 cache storage

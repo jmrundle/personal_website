@@ -45,7 +45,7 @@ resume:
           css_classes:
             - two-columns
           descriptions:
-            - Agile Methodologies
+            - Agile (Scrum)
             - ASP.NET
             - AWS (DynamoDB, EC2, S3)
             - Bootstrap

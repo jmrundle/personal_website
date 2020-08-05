@@ -4,7 +4,7 @@ description: Welcome to my website!
 image: /resources/profile.jpeg
 tags:
   - first-post
-  - website
+  - AWS
   - Flask
 ---
 

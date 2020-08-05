@@ -20,7 +20,7 @@
 
             <nav>
                 <div id="nav-toggler" data-target="links">
-                    <div id="head"><h2>{{ g_name }}</h2></div>
+                    <div id="head"></div>
                     <i class="fa fa-bars"></i>
                 </div>
                 <ul id="links">
@@ -43,9 +43,7 @@
 
 
         <section id="content">
-            <div class="content-wrapper">
-               {% block content %}{% endblock %}
-            </div>
+            {% block content %}{% endblock %}
         </section>
     </body>
     <footer>
