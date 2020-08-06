@@ -25,6 +25,8 @@
                     <div class="post-header">
                         <a class="post-link" href="/posts/{{ post.endpoint }}">
                             <h3 class="post-title">{{ post.metadata.title }}</h3>
+                            <span class="post-time">{{ post.creation_ts }}</span>
+
                             <p class="post-description">{{ post.metadata.description }}</p>
                             <div class="post-tags">
                                 {% for tag in post.metadata.tags %}

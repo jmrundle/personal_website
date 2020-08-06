@@ -10,10 +10,20 @@
     list-style-type: none;
     padding: 0;
 }
+.post-title {
+    display: inline-block;
+}
+.post-time {
+    font-size: 1em;
+    float: right;
+    padding: 0 1em;
+}
 .post-link {
     text-decoration: none;
     color: inherit;
 }
+
+
 .post {
     border: 1px solid;
     border-radius: 8px;

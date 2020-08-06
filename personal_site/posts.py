@@ -2,6 +2,7 @@ import glob
 import markdown2
 import frontmatter
 import os.path
+import datetime
 
 
 class InvalidPostException(BaseException):
@@ -9,10 +10,11 @@ class InvalidPostException(BaseException):
 
 
 class Post:
-    def __init__(self, metadata, html):
-        self.endpoint = None
+    def __init__(self, metadata, html, creation_ts):
+        self.endpoint = ""
         self.metadata = metadata
         self.html = html
+        self.creation_ts = creation_ts
 
     def has_valid_metadata(self):
         return self.metadata.get("title", None) is not None and \
@@ -54,7 +56,10 @@ def load_posts(post_path, file_extension="md"):
 
             html = markdown2.markdown(data.content, extras=["fenced-code-blocks"])
 
-            post = Post(data.metadata, html)
+            creation_datetime = datetime.datetime.fromtimestamp(os.path.getmtime(filename))
+            creation_ts = creation_datetime.strftime("%b %-d, %Y")
+
+            post = Post(data.metadata, html, creation_ts)
 
         # make sure each post has the
         if post.has_valid_metadata():
