@@ -37,3 +37,6 @@
     border: none;
     transition: all 600ms;
 }
+.footer {
+    padding: 0 1em;
+}

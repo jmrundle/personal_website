@@ -4,6 +4,12 @@ avatar: /resources/headshot.png
 about:
   - I'm a junior Computer Science major at the University of Notre Dame, from Jefferson City, Missouri.
   - In my free time, I enjoy playing golf, messing around with technology, listening to music, and watching sports.
+  - >
+    This website is a personal project of mine, meant to introduce me to technologies like AWS, Nginx, and Flask, while also
+    providing an outlet to express myself.
+  - >
+    A more notable feature of this site is the Spotify and Github API integration, found on the "More"
+    page, which specifies some of my recent personal listening habits and git activity.
 
 social_usernames:
   email:  jackrundle530@gmail.com
@@ -39,7 +45,6 @@ resume:
             - HTML/CSS
             - MATLAB
             - Python
-            - Verilog HDL
 
         - title: Other
           css_classes:
@@ -49,12 +54,11 @@ resume:
             - ASP.NET
             - AWS (DynamoDB, EC2, S3)
             - Bootstrap
-            - jQuery
             - Flask
             - Git
-            - Linux
-            - Scrum
+            - jQuery
             - SQL
+            - Unix
             - Vim
 
 
@@ -66,9 +70,10 @@ resume:
           date: June 2020 - July 2020
           image: /resources/fidelity_logo.png
           descriptions:
-            - Developed major enhancements and bug fixes to a Defined Benefits regression testing utility
-            - Architected system in C++ and MySQL to automate monthly QA regressions
-            - Prepared documentation and instructional videos for future developers
+            - Developed enhancements to a C++/MFC based regression utility used to test Pension Plan calculation software
+            - Architected system in Python, C++, and MySQL to automate monthly QA regressions, saving hundreds of hours/year
+            - Prepared documentation and instructional videos on generics of source code, C++, MFC, and application structure
+            - Worked with team to adopt more modern Agile principles into existing Scrum model
 
         - title: Huber & Associates, Inc.
           subtitle: Warehouse Worker
@@ -85,12 +90,11 @@ resume:
           date: May 2019 - April 2020
           image: /resources/huber_logo.png
           descriptions:
-            - Coordinated with Accounting dept. to design automated SSRS financial analyses, reducing required labor by 75%
-            - Conceptualized, developed, and documented an intranet website to manage company event planning/signups
-            - Implemented MVC architecture with ASP.NET, along with jQuery and Bootstrap for frontend, and SQL for data storage
-            - Configured site to use Windows Authentication against company LDAP
+            - Coordinated with Accounting dept. to design SQL-based financial analyses in SSRS, reducing required labor by 75%
+            - Conceptualized and developed an intranet website to manage company event planning and signups
+            - Leveraged .NET MVC 5 for backend, jQuery and Bootstrap for frontend, and a remote SQL DB for data storage
             - Investigated and proposed the potential applications of the IBM Watson API to upper management with custom Python/Flask prototypes and Node.js endpoints
-            - Collaborated with a government office to help transfer website content from one CMS to another
+            - Collaborated with a state government office to transfer website content from one CMS to another
 
         - title: University of Notre Dame - Hesburgh Libraries
           subtitle: Student Assistant
@@ -107,7 +111,7 @@ resume:
           date: May 2020
           descriptions:
             - Designed an AWS EC2 hosted website from scratch, using Flask + Nginx for backend and vanilla JS + CSS for front-end
-            - Integrated Spotify and Github API’s to gather additional information
+            - Integrated Spotify and Github API’s to gather additional information, using AWS S3 to securely store OAuth tokens
             - Features automatic site generation based on a config of YML files and Markdown files for a blog
 
         - title: Dameros Website
@@ -119,21 +123,19 @@ resume:
         - title: HTTP Server
           date: April 2020
           descriptions:
-            - Utilized system calls in C to develop a simple HTTP server
-            - Supported directory listings, mimetype prediction, image previews, and CGI scripts
+            - Utilized system calls in C to create a simple HTTP server, deployed to an AWS EC2 instance
+            - Supported styled directory listings, image previews, MIME type predictions, and CGI scripts
             - Leveraged a custom Python HTTP client and Bash script to test the latency and throughput of the server
-            - Deployed to an AWS EC2 instance
 
         - title: Rubik's Cube Solver
           date: Spring 2019
           descriptions:
-            - Constructed a computational model and physical machine to solve a Rubik’s Cube
-            - Developed a conditional solution algorithm in MATLAB and programmed an Arduino to actuate corresponding motors
+            - Developed a solution algorithm in MATLAB and programmed an Arduino to actuate motors within a 3D printed frame
             - Selected as one of the five featured projects among all freshmen engineers and invited to present to incoming class
 
         - title: Handicap Manager
           date: Summer 2018
           descriptions:
-            - Designed and implemented a Python based golf handicap management program with a GUI and user login system
-            - Created a Python script to parse online USGA course and tee data
-            - Utilized Google’s Geocoding API in populating a SQLite database with information on over 14,000 U.S. courses
+            - Designed and implemented a Python based golf handicap management system with a GUI and user login system
+            - Developed a Python script to asynchronously parse over 14,000 webpages of USGA course and tee data
+            - Utilized Google’s Geocoding API in populating a local SQLite database with relevant information on USGA courses

@@ -39,7 +39,7 @@ To start, I used my existing Python/Flask skills to create the basic boilerplate
 From there, I began integrating dynamic content generation from a configuration of easily modifiable [YAML](https://pyyaml.org/wiki/PyYAML) files.  These files sit outside the core website logic, within the `/instance` directory.
 The idea is that once the site is up and running, you can ignore all of the other project files and solely focus on managing these content-driving resources.
 
-Beyond this, I also sought to introduce various forms of dynamic content to try and make my website feel cooler than a typical static blog (nothing against that... I just like the challenge).
+Beyond this, I also sought to introduce various forms of dynamic content to try and make my website feel a little cooler than a traditional static portfolio.
 I have and always will love [Spotify's API](https://developer.spotify.com/documentation/web-api/), so that's where I started.
 Spotify's API supports numerous endpoints, of which supply information about artists, tracks, and user statistics.
 I went with the [top tracks & artists](https://developer.spotify.com/documentation/web-api/reference/personalization/get-users-top-artists-and-tracks/) endpoint, which requires an authorized OAuth token.
@@ -48,6 +48,7 @@ This, in itself, proved to be a surprisingly difficult challenge.  In summary, m
 
 <div style="text-align: center">
     <img src="/resources/authorization.png" style="width: 45vw;" />
+    <p>Image from Spotify's <a href="https://developer.spotify.com/documentation/general/guides/authorization-guide/">Authorization Guide</a></p>
 </div>
 
 1. Fetch an authorization page from Spotify
@@ -65,7 +66,7 @@ To navigate this, I used the [Spotipy API wrapper](https://spotipy.readthedocs.i
 Unfortunately, Heroku uses an [ephemeral file system](https://devcenter.heroku.com/articles/dynos#ephemeral-filesystem) which is regularly replaced from a public GIT repository.  This meant I could no longer resort to Spotipy's method of using the file system to store the authorization information.
 A fully-fledged database felt like an excessive solution, so I went with [AWS S3](https://aws.amazon.com/s3/), which was pretty simple to integrate.
 
-After that, I played with the HTML/CSS/JS until I had a [nice little page](/more) to visualize basic information about my Spotify listening habits.
+After that, I played with the HTML/CSS/JS until I had a nice little [page](/more) to visualize basic information about my Spotify listening habits.
 I then did something similar with Github's API, to display various public git information.
 
 The last step was to add a ["blog"](/posts) of sorts to the site.  Content for this "blog" is generated from a listing of Markdown files in the `/instance/posts` directory.
@@ -80,8 +81,8 @@ Upon some research, I found that Heroku will regularly put their free-trial serv
 This clearly wasn't going to work.  But as a broke college student, I wasn't willing to dump whatever amount of money to keep this site running properly.  Instead, I decided to go with [AWS EC2](https://aws.amazon.com/ec2/).
 Luckily, I still had almost eight months left on my [AWS Free-Tier](https://aws.amazon.com/free), which meant I could utilize a t2.micro instance for free to meet my hosting needs!
 
-The next task was to automate the deployment to my EC2 instance.  To do this, I created a collection of [shell scripts](https://github.com/jmrundle/personal_website/tree/master/scripts) to copy/refresh source files and restart the Flask server.
-These scripts primarily use `ssh` and `scp` to do so.  I also set up a Nginx HTTP server to act as a reverse-proxy to my WSGI Flask server.  There are a few benefits to this.
-First, the Nginx does most of the heavy lifting in regards to forking processes, handling routes, etc.  But also, this means that I can restart my Flask server without disabling functionality to the HTTP server.
+The next task was to automate the deployment to my EC2 instance.  To do this, I created a collection of [shell scripts](https://github.com/jmrundle/personal_website/tree/master/scripts), which utilize `ssh` and `scp` to refresh source files and restart the Flask server
+on the remote EC2 instance.  I also set up a Nginx HTTP server to act as a reverse-proxy to this WSGI Flask server.  There are a few benefits of doing this.
+First, Nginx does most of the heavy lifting in regards to forking processes, handling routes, etc.  But also, this means that I can restart my Flask server without disabling functionality to the underlying HTTP server, which greatly simplifies the shell scripts.
 
-Finally, I used my [Github Student Developer pack](https://education.github.com/pack) to generate a free domain name at [jackrundle.me](http://jackrundle.me).
+Finally, I used my [Github Student Developer pack](https://education.github.com/pack) to generate a free domain name at [jackrundle.me](https://jackrundle.me), and set up a crontab to auto-renew SSL certificates with [Certbot](https://certbot.eff.org) and [LetsEncrypt](https://letsencrypt.org).

@@ -19,8 +19,8 @@ class Post:
     def has_valid_metadata(self):
         return self.metadata.get("title", None) is not None and \
             self.metadata.get("description", None) is not None and \
-            self.metadata.get("image", None) is None and \
-            self.metadata.get("tags", None) is None
+            self.metadata.get("image", None) is not None and \
+            self.metadata.get("tags", None) is not None
 
     def insert_into(self, posts):
         # make post name URL safe
@@ -61,8 +61,7 @@ def load_posts(post_path, file_extension="md"):
 
             post = Post(data.metadata, html, creation_ts)
 
-        # make sure each post has the
-        if post.has_valid_metadata():
+        if not post.has_valid_metadata():
             raise InvalidPostException
 
         post.insert_into(posts)
