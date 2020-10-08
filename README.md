@@ -1,8 +1,7 @@
 # Personal Site
  - Source files for a personal website template
- - Runs on a Flask web server
+ - Runs with a Flask web server on a EC2 instance
  - Generates content from a configuration of YML files
- - Stores static content with AWS S3
 
 ---
 
@@ -23,10 +22,10 @@ pip3 install -r requirements.txt
     - Public: 
         1. [config.py](config/app_config.py): public configuration
         2. [social_config.yml](config/socials.yml): configures how we handle a given social media platform (shouldn't need to touch, unless you wan't to add support for another platform)
-    - Private
-        1. [instance/info.yml](instance/info.yml): information for site
+        3. [instance/info.yml](instance/info.yml): information for site
            - Stores name, social media usernames, resume info, etc. to generate site content
-        2. [.env](config/.env):  completely optional file to declare environmental variables.  Use this for API keys, access tokens, etc.
+    - Private
+        1. [.env](config/.env):  completely optional file to declare environmental variables.  Use this for API keys, access tokens, etc.
             - NOTE: this is simply an alternative to setting each env variable explicitly in the shell with: 
               ```bash
               export CONFIG_VARIABLE=value
@@ -39,7 +38,7 @@ pip3 install -r requirements.txt
          - the [resources](instance/resources) directory is used for images, pdf files, etc. to be referenced in [info.yml](instance/info.yml) via `/resources/<filename>`
          - the [tmp](instance/tmp) directory is used to store temporary content, such as cached API tokens
     - These path to these sub-folders can be configured in [config.py](config/app_config.py)
-    - Nothing in this folder is tracked by git, although this behavior can be changed in the [.gitignore](.gitignore) by removing the following lines:
+    - To remove instance tracking by git, add following lines to [.gitignore](.gitignore):
         ```gitignore
         instance/*
         !instance/*/
@@ -47,7 +46,6 @@ pip3 install -r requirements.txt
         instance/*/*
         !instance/*/.gitkeep
         ```
-      - Actually, right now it is tracked by GIT, but I'll look into S3 deployment later
       - [Generate AWS IAM Credentials](https://console.aws.amazon.com/iam/home?region=us-east-2#/security_credentials)
 ---
 

@@ -80,6 +80,7 @@ footer i:hover {
         height: auto;
         overflow: hidden;
         padding: 0;
+        border-left: none;
     }
     #navigation > header {
         display: none;

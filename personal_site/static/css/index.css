@@ -31,10 +31,10 @@
     padding: 15px 0;
 }
 #colorful-socials i {
-    padding: 0.45em;
+    padding: 0.4em;
     margin: 0 5px;
     border-radius: 50%;
-    font-size: 1.5em;
+    font-size: 1.2em;
     color: var(--link-color);
 }
 
@@ -48,6 +48,7 @@ footer li:hover {
     width: 100%;
     background-image: url("/resources/background.jpg");
     background-size: cover;
+    background-position: center;
 }
 .centered-content {
     display: table-cell;

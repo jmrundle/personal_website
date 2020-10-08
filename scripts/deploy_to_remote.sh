@@ -9,6 +9,7 @@ fi
 
 SERVER=$1
 WWW="~/personal_site"
+SSH_PEM="~/ssh-key.pem"
 
 # navigate to project root
 cd `dirname $0`
@@ -24,4 +25,4 @@ scripts/refresh_content.sh $SERVER $WWW 1
 
 
 echo "Restarting server"
-ssh -f -i ~/ssh-key.pem $SERVER "bash -s" < scripts/restart_server.sh "$WWW"
+ssh -f -i $SSH_PEM $SERVER "bash -s -- $WWW" < scripts/restart_server.sh

@@ -8,6 +8,14 @@
     padding: 0.8em;
     background-color: #7286ab85;
 }
+
+#content section:hover {
+    transform: scale(1.02);
+    transition: 400ms;
+    background-color: #b3efb566;
+    box-shadow: 0px 0px 30px #ffffff3d;
+}
+
 .section-title {
     color: white;
     margin: 0;
